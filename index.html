@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SalesCalc - eCommerce Profit Calculator</title>
+    <meta
+      name="description"
+      content="Compare Shopify, TikTok Shop, and Amazon FBA Lite profit, margin, ROI, break-even price, and fee assumptions in one free calculator."
+    >
+    <meta name="robots" content="index,follow">
+    <meta property="og:title" content="SalesCalc - eCommerce Profit Calculator">
+    <meta
+      property="og:description"
+      content="A transparent multi-platform profit calculator for Shopify, TikTok Shop, and Amazon FBA Lite."
+    >
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#155e75">
+    <link rel="stylesheet" href="styles.css">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "SalesCalc eCommerce Profit Calculator",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Any",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">SalesCalc</p>
+        <h1>eCommerce profit calculator</h1>
+      </div>
+      <div class="topbar-actions">
+        <button id="copySummary" class="button button-secondary" type="button">Copy summary</button>
+        <button id="resetForm" class="button" type="button">Reset</button>
+      </div>
+    </header>
+
+    <main class="app-shell">
+      <section class="input-panel" aria-labelledby="input-heading">
+        <div class="section-title">
+          <h2 id="input-heading">Inputs</h2>
+          <p>Enter one product scenario and compare platform economics instantly.</p>
+        </div>
+
+        <form id="calculatorForm" class="form-stack">
+          <fieldset>
+            <legend>Product economics</legend>
+            <div class="control-grid">
+              <label>
+                <span>Selling price</span>
+                <input id="sellingPrice" type="number" min="0" step="0.01" value="39.99">
+              </label>
+              <label>
+                <span>Product cost</span>
+                <input id="productCost" type="number" min="0" step="0.01" value="12">
+              </label>
+              <label>
+                <span>Inbound shipping</span>
+                <input id="inboundShipping" type="number" min="0" step="0.01" value="3.50">
+              </label>
+              <label>
+                <span>Customer shipping charged</span>
+                <input id="customerShipping" type="number" min="0" step="0.01" value="0">
+              </label>
+              <label>
+                <span>Seller shipping cost</span>
+                <input id="sellerShipping" type="number" min="0" step="0.01" value="4">
+              </label>
+              <label>
+                <span>Return rate (%)</span>
+                <input id="returnRate" type="number" min="0" max="100" step="0.1" value="5">
+              </label>
+              <label>
+                <span>Return loss per order</span>
+                <input id="returnLoss" type="number" min="0" step="0.01" value="8">
+              </label>
+              <label>
+                <span>Other cost</span>
+                <input id="otherCosts" type="number" min="0" step="0.01" value="0">
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Shopify US</legend>
+            <div class="control-grid">
+              <label>
+                <span>Plan</span>
+                <select id="shopifyPlan">
+                  <option value="basic">Basic</option>
+                  <option value="grow">Grow</option>
+                  <option value="advanced">Advanced</option>
+                </select>
+              </label>
+              <label>
+                <span>Payment method</span>
+                <select id="shopifyPayment">
+                  <option value="standardCard">Standard card</option>
+                  <option value="premiumCard">Premium card</option>
+                  <option value="internationalCard">International card</option>
+                  <option value="thirdParty">Third-party gateway</option>
+                </select>
+              </label>
+              <label>
+                <span>CAC / ad cost</span>
+                <input id="shopifyCac" type="number" min="0" step="0.01" value="8">
+              </label>
+              <label>
+                <span>App cost per order</span>
+                <input id="shopifyAppCost" type="number" min="0" step="0.01" value="0">
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>TikTok Shop US</legend>
+            <div class="control-grid">
+              <label>
+                <span>Referral fee (%)</span>
+                <input id="tiktokReferralRate" type="number" min="0" max="100" step="0.1" value="6">
+              </label>
+              <label>
+                <span>Affiliate commission (%)</span>
+                <input id="tiktokAffiliateRate" type="number" min="0" max="80" step="0.5" value="10">
+              </label>
+              <label>
+                <span>Ads / GMV Max cost</span>
+                <input id="tiktokAdsCost" type="number" min="0" step="0.01" value="6">
+              </label>
+              <label>
+                <span>Processing fee (%)</span>
+                <input id="tiktokProcessingRate" type="number" min="0" max="100" step="0.1" value="0">
+              </label>
+              <label>
+                <span>Processing fixed fee</span>
+                <input id="tiktokProcessingFixed" type="number" min="0" step="0.01" value="0">
+              </label>
+              <label class="checkbox-control">
+                <input id="tiktokProcessingEnabled" type="checkbox">
+                <span>Count processing fee separately</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Amazon FBA US Lite</legend>
+            <div class="control-grid">
+              <label>
+                <span>Category</span>
+                <select id="amazonCategory">
+                  <option value="electronics">Electronics</option>
+                  <option value="home_kitchen">Home & Kitchen</option>
+                  <option value="apparel_default">Apparel</option>
+                  <option value="manual">Manual referral fee</option>
+                </select>
+              </label>
+              <label>
+                <span>Manual referral fee (%)</span>
+                <input id="amazonReferralRate" type="number" min="0" max="100" step="0.1" value="15">
+              </label>
+              <label>
+                <span>FBA fulfillment fee</span>
+                <input id="amazonFbaFee" type="number" min="0" step="0.01" value="4.15">
+              </label>
+              <label>
+                <span>Storage fee per unit</span>
+                <input id="amazonStorageFee" type="number" min="0" step="0.01" value="0.20">
+              </label>
+              <label>
+                <span>PPC cost per order</span>
+                <input id="amazonPpcCost" type="number" min="0" step="0.01" value="5">
+              </label>
+              <label>
+                <span>Other Amazon cost</span>
+                <input id="amazonOtherCosts" type="number" min="0" step="0.01" value="0">
+              </label>
+            </div>
+          </fieldset>
+        </form>
+      </section>
+
+      <section class="results-panel" aria-labelledby="results-heading">
+        <div class="summary-band">
+          <div>
+            <p class="eyebrow">Best estimate</p>
+            <h2 id="results-heading"><span id="bestPlatform">Shopify</span></h2>
+          </div>
+          <div class="summary-metrics">
+            <div>
+              <span>Net profit</span>
+              <strong id="bestProfit">$0.00</strong>
+            </div>
+            <div>
+              <span>Margin</span>
+              <strong id="bestMargin">0%</strong>
+            </div>
+          </div>
+        </div>
+
+        <div id="platformResults" class="platform-grid" aria-live="polite"></div>
+
+        <section class="method-panel" aria-labelledby="method-heading">
+          <h2 id="method-heading">Assumptions</h2>
+          <div class="method-grid">
+            <div>
+              <h3>Transparent defaults</h3>
+              <p>
+                Every default fee can be overridden. Use platform dashboards for final accounting,
+                especially Amazon FBA and TikTok Shop seller fees.
+              </p>
+            </div>
+            <div>
+              <h3>Last verified</h3>
+              <ul id="sourceList" class="source-list"></ul>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>
+        Disclaimer: SalesCalc provides estimates for planning only. Actual payouts, fees, tax treatment,
+        refunds, adjustments, and promotions may differ in your platform account.
+      </p>
+    </footer>
+
+    <script src="src/rates.js" defer></script>
+    <script src="src/calculators.js" defer></script>
+    <script src="src/app.js" defer></script>
+  </body>
+</html>

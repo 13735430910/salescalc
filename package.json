@@ -1,0 +1,18 @@
+{
+  "name": "salescalc",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Static eCommerce profit calculator for Shopify, TikTok Shop, and Amazon FBA Lite.",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "serve": "python3 -m http.server 8000"
+  },
+  "keywords": [
+    "ecommerce",
+    "profit-calculator",
+    "shopify",
+    "tiktok-shop",
+    "amazon-fba"
+  ],
+  "license": "UNLICENSED"
+}
