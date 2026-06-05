@@ -596,6 +596,11 @@ function gitArgs() {
     return ["-C", ROOT];
   }
 
+  const localGitDir = path.join(ROOT, "var", "salescalc.git");
+  if (fs.existsSync(localGitDir)) {
+    return ["--git-dir", localGitDir, "--work-tree", ROOT];
+  }
+
   if (fs.existsSync("/tmp/salescalc.git")) {
     return ["--git-dir", "/tmp/salescalc.git", "--work-tree", ROOT];
   }

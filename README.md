@@ -112,16 +112,17 @@ Install the daily cron job:
 SALES_CALC_POLICY_TIME=09:30 npm run policy:install-cron
 ```
 
-For this workspace, the Git metadata is stored outside the project folder. Install cron with:
+For this workspace, the Git metadata can be stored in an ignored project-local git directory:
 
 ```bash
-SALES_CALC_POLICY_TIME=09:30 SALES_CALC_GIT_DIR=/tmp/salescalc.git npm run policy:install-cron
+cp -a /tmp/salescalc.git var/salescalc.git
+SALES_CALC_POLICY_TIME=09:30 SALES_CALC_GIT_DIR=/root/salescalc/var/salescalc.git npm run policy:install-cron
 ```
 
 Preview the cron entry without installing:
 
 ```bash
-SALES_CALC_POLICY_TIME=09:30 SALES_CALC_GIT_DIR=/tmp/salescalc.git bash scripts/install-policy-cron.sh --print
+SALES_CALC_POLICY_TIME=09:30 SALES_CALC_GIT_DIR=/root/salescalc/var/salescalc.git bash scripts/install-policy-cron.sh --print
 ```
 
 Local state and logs are ignored by git:
