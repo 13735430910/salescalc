@@ -3,25 +3,34 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SalesCalc - eCommerce Profit Calculator</title>
+    <title>SkuROI - SKU Profit and ROI Calculator</title>
     <meta
       name="description"
-      content="Compare Shopify, TikTok Shop, and Amazon FBA Lite profit, margin, ROI, break-even price, and fee assumptions in one free calculator."
+      content="Compare SKU-level profit, margin, ROI, break-even price, and fee assumptions for Shopify, TikTok Shop, and Amazon FBA Lite."
     >
     <meta name="robots" content="index,follow">
-    <meta property="og:title" content="SalesCalc - eCommerce Profit Calculator">
+    <link rel="canonical" href="https://skuroi.com/">
+    <meta property="og:title" content="SkuROI - SKU Profit and ROI Calculator">
     <meta
       property="og:description"
-      content="A transparent multi-platform profit calculator for Shopify, TikTok Shop, and Amazon FBA Lite."
+      content="A transparent SKU-level profit calculator for Shopify, TikTok Shop, and Amazon FBA Lite."
     >
     <meta property="og:type" content="website">
-    <meta name="theme-color" content="#155e75">
+    <meta property="og:url" content="https://skuroi.com/">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="SkuROI - SKU Profit and ROI Calculator">
+    <meta
+      name="twitter:description"
+      content="Estimate net profit, margin, ROI, and break-even price across Shopify, TikTok Shop, and Amazon FBA Lite."
+    >
+    <meta name="theme-color" content="#0b1220">
     <link rel="stylesheet" href="styles.css">
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "WebApplication",
-        "name": "SalesCalc eCommerce Profit Calculator",
+        "name": "SkuROI SKU Profit and ROI Calculator",
+        "url": "https://skuroi.com/",
         "applicationCategory": "BusinessApplication",
         "operatingSystem": "Any",
         "offers": {
@@ -31,15 +40,52 @@
         }
       }
     </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What does SkuROI calculate?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "SkuROI estimates SKU-level net profit, profit margin, ROI, break-even price, and maximum allowable ad cost across Shopify, TikTok Shop, and Amazon FBA Lite."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are the platform fees exact?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. SkuROI uses editable default assumptions with source links and last verified dates. Sellers should verify final fees in each platform dashboard."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does SkuROI save my inputs?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Inputs are saved locally in the browser with localStorage so refreshing the page does not reset custom parameters."
+            }
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <header class="topbar">
-      <div>
-        <p class="eyebrow">SalesCalc</p>
-        <h1>eCommerce profit calculator</h1>
+      <div class="brand-lockup">
+        <span class="brand-mark" aria-hidden="true">SR</span>
+        <div>
+          <p class="eyebrow">skuroi.com</p>
+          <h1>SKU Profit and ROI Calculator</h1>
+        </div>
       </div>
       <div class="topbar-actions">
+        <span id="saveStatus" class="save-status" aria-live="polite">Saved locally</span>
         <button id="copySummary" class="button button-secondary" type="button">Copy summary</button>
+        <button id="clearSaved" class="button button-ghost" type="button">Clear saved</button>
         <button id="resetForm" class="button" type="button">Reset</button>
       </div>
     </header>
@@ -48,7 +94,7 @@
       <section class="input-panel" aria-labelledby="input-heading">
         <div class="section-title">
           <h2 id="input-heading">Inputs</h2>
-          <p>Enter one product scenario and compare platform economics instantly.</p>
+          <p>Your inputs are remembered in this browser and can still be shared through the URL.</p>
         </div>
 
         <form id="calculatorForm" class="form-stack">
@@ -224,12 +270,38 @@
             </div>
           </div>
         </section>
+
+        <section class="seo-panel" aria-labelledby="seo-heading">
+          <div>
+            <p class="eyebrow">SKU economics</p>
+            <h2 id="seo-heading">Estimate platform profit before you launch a product</h2>
+            <p>
+              SkuROI helps sellers compare Shopify, TikTok Shop, and Amazon FBA Lite with one
+              consistent product scenario. Use it to test pricing, landed cost, ad spend, referral
+              fees, affiliate commissions, fulfillment fees, and return loss before committing to a SKU.
+            </p>
+          </div>
+          <div class="faq-grid">
+            <article>
+              <h3>What should I use it for?</h3>
+              <p>Fast product screening, offer testing, CAC planning, and platform comparison.</p>
+            </article>
+            <article>
+              <h3>Are the fees exact?</h3>
+              <p>No. Defaults are editable estimates. Always verify final fees in platform dashboards.</p>
+            </article>
+            <article>
+              <h3>Where are my inputs saved?</h3>
+              <p>Only in this browser through local storage. Use Clear saved to remove them.</p>
+            </article>
+          </div>
+        </section>
       </section>
     </main>
 
     <footer class="footer">
       <p>
-        Disclaimer: SalesCalc provides estimates for planning only. Actual payouts, fees, tax treatment,
+        Disclaimer: SkuROI provides estimates for planning only. Actual payouts, fees, tax treatment,
         refunds, adjustments, and promotions may differ in your platform account.
       </p>
     </footer>

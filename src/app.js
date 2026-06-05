@@ -8,7 +8,10 @@
   const bestMargin = document.getElementById("bestMargin");
   const sourceList = document.getElementById("sourceList");
   const resetButton = document.getElementById("resetForm");
+  const clearSavedButton = document.getElementById("clearSaved");
   const copyButton = document.getElementById("copySummary");
+  const saveStatus = document.getElementById("saveStatus");
+  const STORAGE_KEY = "skuroi.calculator.inputs.v1";
 
   const defaults = {
     sellingPrice: 39.99,
@@ -98,8 +101,8 @@
     };
   }
 
-  function setDefaults() {
-    Object.entries(defaults).forEach(([id, next]) => {
+  function setFormValues(values) {
+    Object.entries(values).forEach(([id, next]) => {
       const element = document.getElementById(id);
       if (!element) {
         return;
@@ -111,8 +114,77 @@
         element.value = String(next);
       }
     });
+  }
 
+  function setDefaults() {
+    setFormValues(defaults);
     render();
+  }
+
+  function getFormSnapshot() {
+    return Object.fromEntries(
+      Object.keys(defaults).map((id) => {
+        const element = document.getElementById(id);
+        if (!element) {
+          return [id, defaults[id]];
+        }
+
+        return [id, element.type === "checkbox" ? element.checked : element.value];
+      })
+    );
+  }
+
+  function updateSaveStatus(message) {
+    if (!saveStatus) {
+      return;
+    }
+
+    saveStatus.textContent = message;
+  }
+
+  function saveFormSnapshot() {
+    try {
+      window.localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify({
+          savedAt: new Date().toISOString(),
+          values: getFormSnapshot()
+        })
+      );
+      updateSaveStatus("Saved locally");
+    } catch (error) {
+      updateSaveStatus("Local save unavailable");
+    }
+  }
+
+  function hydrateFromStorage() {
+    try {
+      const raw = window.localStorage.getItem(STORAGE_KEY);
+      if (!raw) {
+        updateSaveStatus("Ready to save");
+        return;
+      }
+
+      const parsed = JSON.parse(raw);
+      if (parsed && parsed.values && typeof parsed.values === "object") {
+        setFormValues(parsed.values);
+        updateSaveStatus("Restored locally");
+      }
+    } catch (error) {
+      updateSaveStatus("Saved data ignored");
+    }
+  }
+
+  function clearSavedData() {
+    try {
+      window.localStorage.removeItem(STORAGE_KEY);
+    } catch (error) {
+      // Ignore localStorage errors; the UI still resets to defaults below.
+    }
+
+    setFormValues(defaults);
+    render({ persist: false });
+    updateSaveStatus("Saved data cleared");
   }
 
   function renderCostBreakdown(result) {
@@ -210,7 +282,7 @@
     window.history.replaceState(null, "", nextUrl);
   }
 
-  function render() {
+  function render(options = {}) {
     const state = getState();
     const { results, best } = calc.calculateAll(state, rates);
 
@@ -219,6 +291,10 @@
     bestMargin.textContent = percent(best.profitMargin);
     resultHost.innerHTML = results.map(renderCard).join("");
     updateQuery(state);
+
+    if (options.persist !== false) {
+      saveFormSnapshot();
+    }
   }
 
   function copySummary() {
@@ -266,8 +342,10 @@
   form.addEventListener("input", render);
   form.addEventListener("change", render);
   resetButton.addEventListener("click", setDefaults);
+  clearSavedButton.addEventListener("click", clearSavedData);
   copyButton.addEventListener("click", copySummary);
 
+  hydrateFromStorage();
   hydrateFromQuery();
   renderSources();
   render();
