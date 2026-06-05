@@ -6,7 +6,7 @@
     <title>SkuROI - SKU 수익 및 ROI 계산기</title>
     <meta
       name="description"
-      content="Shopify, TikTok Shop, Amazon FBA Lite의 SKU별 순이익, 마진, ROI, 손익분기 가격과 수수료 가정을 비교합니다."
+      content="Shopify, TikTok Shop, Amazon FBA Lite와 드롭쉬핑 시나리오의 SKU별 순이익, 마진, ROI, 손익분기 가격과 수수료 가정을 비교합니다."
     >
     <meta name="robots" content="index,follow">
     <link rel="canonical" href="https://skuroi.com/ko/">
@@ -23,7 +23,7 @@
     <meta property="og:title" content="SkuROI - SKU 수익 및 ROI 계산기">
     <meta
       property="og:description"
-      content="Shopify, TikTok Shop, Amazon FBA Lite의 SKU별 순이익, 마진, ROI, 손익분기 가격과 수수료 가정을 비교합니다."
+      content="Shopify, TikTok Shop, Amazon FBA Lite와 드롭쉬핑 시나리오의 SKU별 순이익, 마진, ROI, 손익분기 가격과 수수료 가정을 비교합니다."
     >
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://skuroi.com/ko/">
@@ -31,7 +31,7 @@
     <meta name="twitter:title" content="SkuROI - SKU 수익 및 ROI 계산기">
     <meta
       name="twitter:description"
-      content="Shopify, TikTok Shop, Amazon FBA Lite의 순이익, 마진, ROI와 손익분기 가격을 추정합니다."
+      content="재고형과 드롭쉬핑 주문 처리 시나리오의 순이익, 마진, ROI와 손익분기 가격을 추정합니다."
     >
     <meta name="theme-color" content="#0b1220">
     <link rel="stylesheet" href="/styles.css">
@@ -60,7 +60,7 @@
                               "name": "SkuROI는 무엇을 계산하나요?",
                               "acceptedAnswer": {
                                       "@type": "Answer",
-                                      "text": "SkuROI는 Shopify, TikTok Shop, Amazon FBA Lite의 SKU별 순이익, 마진, ROI, 손익분기 가격과 최대 허용 광고비를 추정합니다."
+                                      "text": "SkuROI는 Shopify, TikTok Shop, Amazon FBA Lite, 재고형, 드롭쉬핑 시나리오의 SKU별 순이익, 마진, ROI, 손익분기 가격과 최대 허용 광고비를 추정합니다."
                               }
                       },
                       {
@@ -143,15 +143,30 @@
             <legend data-i18n="productEconomics">상품 수익 구조</legend>
             <div class="control-grid">
               <label>
+                <span data-i18n="fulfillmentMode">주문 처리 방식</span>
+                <select id="fulfillmentMode">
+                  <option value="stocked" data-i18n="stockedInventory">재고 / 사입</option>
+                  <option value="dropshipping" data-i18n="dropshipping">드롭쉬핑</option>
+                </select>
+              </label>
+              <label>
                 <span data-i18n="sellingPrice">판매가</span>
                 <input id="sellingPrice" type="number" min="0" step="0.01" value="39.99">
               </label>
               <label>
-                <span data-i18n="productCost">상품 원가</span>
+                <span
+                  data-i18n="productCost"
+                  data-mode-stocked-i18n="productCost"
+                  data-mode-dropshipping-i18n="supplierItemCost"
+                >상품 원가</span>
                 <input id="productCost" type="number" min="0" step="0.01" value="12">
               </label>
               <label>
-                <span data-i18n="inboundShipping">입고/조달 배송비</span>
+                <span
+                  data-i18n="inboundShipping"
+                  data-mode-stocked-i18n="inboundShipping"
+                  data-mode-dropshipping-i18n="optionalLandedCost"
+                >입고/조달 배송비</span>
                 <input id="inboundShipping" type="number" min="0" step="0.01" value="3.50">
               </label>
               <label>
@@ -159,22 +174,43 @@
                 <input id="customerShipping" type="number" min="0" step="0.01" value="0">
               </label>
               <label>
-                <span data-i18n="sellerShipping">판매자 부담 배송비</span>
+                <span
+                  data-i18n="sellerShipping"
+                  data-mode-stocked-i18n="sellerShipping"
+                  data-mode-dropshipping-i18n="supplierShippingFulfillment"
+                >판매자 부담 배송비</span>
                 <input id="sellerShipping" type="number" min="0" step="0.01" value="4">
               </label>
               <label>
-                <span data-i18n="returnRate">반품률 (%)</span>
+                <span
+                  data-i18n="returnRate"
+                  data-mode-stocked-i18n="returnRate"
+                  data-mode-dropshipping-i18n="refundDisputeRate"
+                >반품률 (%)</span>
                 <input id="returnRate" type="number" min="0" max="100" step="0.1" value="5">
               </label>
               <label>
-                <span data-i18n="returnLoss">반품 1건당 손실</span>
+                <span
+                  data-i18n="returnLoss"
+                  data-mode-stocked-i18n="returnLoss"
+                  data-mode-dropshipping-i18n="refundDisputeLoss"
+                >반품 1건당 손실</span>
                 <input id="returnLoss" type="number" min="0" step="0.01" value="8">
+              </label>
+              <label class="mode-only" data-mode-only="dropshipping" hidden>
+                <span data-i18n="supplierProcessingFee">공급사 처리 수수료</span>
+                <input id="supplierProcessingFee" type="number" min="0" step="0.01" value="0">
+              </label>
+              <label class="mode-only" data-mode-only="dropshipping" hidden>
+                <span data-i18n="replacementReshipLoss">교환 / 재배송 손실</span>
+                <input id="reshipLoss" type="number" min="0" step="0.01" value="0">
               </label>
               <label>
                 <span data-i18n="otherCost">기타 비용</span>
                 <input id="otherCosts" type="number" min="0" step="0.01" value="0">
               </label>
             </div>
+            <p id="fulfillmentModeNote" class="mode-note" data-i18n="stockedModeNote">재고 모드는 착지 원가와 재고형 처리 비용을 포함합니다.</p>
           </fieldset>
 
           <fieldset>
@@ -300,7 +336,7 @@
           <div class="method-grid">
             <div>
               <h3 data-i18n="transparentDefaults">투명한 기본값</h3>
-              <p data-i18n="assumptionsBody">모든 기본 수수료는 수정할 수 있습니다. 최종 정산은 각 플랫폼 관리자 화면에서 확인하세요.</p>
+              <p data-i18n="assumptionsBody">모든 기본 수수료는 수정할 수 있습니다. Amazon FBA, TikTok Shop, 드롭쉬핑 공급사 비용은 각 관리자 화면에서 확인하세요.</p>
             </div>
             <div>
               <h3 data-i18n="lastVerified">최종 확인</h3>
@@ -313,7 +349,7 @@
           <div>
             <p class="eyebrow" data-i18n="skuEconomics">SKU 경제성</p>
             <h2 id="seo-heading" data-i18n="seoHeading">상품 출시 전에 플랫폼별 수익을 추정하세요</h2>
-            <p data-i18n="seoBody">SkuROI는 하나의 상품 시나리오로 Shopify, TikTok Shop, Amazon FBA Lite를 비교합니다. SKU를 투입하기 전에 가격, 원가, 광고비, 수수료, 커미션, 배송비, 반품 손실을 테스트할 수 있습니다.</p>
+            <p data-i18n="seoBody">SkuROI는 하나의 상품 시나리오로 Shopify, TikTok Shop, Amazon FBA Lite를 비교합니다. 재고 모드 또는 드롭쉬핑 모드로 가격, 착지 원가, 공급사 처리, 광고비, 수수료, 커미션, 배송비, 환불 손실을 SKU 투입 전에 테스트할 수 있습니다.</p>
           </div>
           <div class="faq-grid">
             <article>

@@ -6,7 +6,7 @@
     <title>SkuROI - SKU 利益・ROI 計算ツール</title>
     <meta
       name="description"
-      content="Shopify、TikTok Shop、Amazon FBA Lite の SKU 別利益、利益率、ROI、損益分岐価格、手数料前提を比較します。"
+      content="Shopify、TikTok Shop、Amazon FBA Lite、ドロップシッピングの SKU 別利益、利益率、ROI、損益分岐価格、手数料前提を比較します。"
     >
     <meta name="robots" content="index,follow">
     <link rel="canonical" href="https://skuroi.com/ja/">
@@ -23,7 +23,7 @@
     <meta property="og:title" content="SkuROI - SKU 利益・ROI 計算ツール">
     <meta
       property="og:description"
-      content="Shopify、TikTok Shop、Amazon FBA Lite の SKU 別利益、利益率、ROI、損益分岐価格、手数料前提を比較します。"
+      content="Shopify、TikTok Shop、Amazon FBA Lite、ドロップシッピングの SKU 別利益、利益率、ROI、損益分岐価格、手数料前提を比較します。"
     >
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://skuroi.com/ja/">
@@ -31,7 +31,7 @@
     <meta name="twitter:title" content="SkuROI - SKU 利益・ROI 計算ツール">
     <meta
       name="twitter:description"
-      content="Shopify、TikTok Shop、Amazon FBA Lite の純利益、利益率、ROI、損益分岐価格を見積もります。"
+      content="在庫型とドロップシッピングの純利益、利益率、ROI、損益分岐価格を見積もります。"
     >
     <meta name="theme-color" content="#0b1220">
     <link rel="stylesheet" href="/styles.css">
@@ -60,7 +60,7 @@
                               "name": "SkuROI は何を計算しますか？",
                               "acceptedAnswer": {
                                       "@type": "Answer",
-                                      "text": "SkuROI は Shopify、TikTok Shop、Amazon FBA Lite の SKU 別純利益、利益率、ROI、損益分岐価格、許容広告費を見積もります。"
+                                      "text": "SkuROI は Shopify、TikTok Shop、Amazon FBA Lite、在庫型、ドロップシッピングの SKU 別純利益、利益率、ROI、損益分岐価格、許容広告費を見積もります。"
                               }
                       },
                       {
@@ -143,15 +143,30 @@
             <legend data-i18n="productEconomics">商品収益モデル</legend>
             <div class="control-grid">
               <label>
+                <span data-i18n="fulfillmentMode">フルフィルメント方式</span>
+                <select id="fulfillmentMode">
+                  <option value="stocked" data-i18n="stockedInventory">在庫 / 仕入れ</option>
+                  <option value="dropshipping" data-i18n="dropshipping">ドロップシッピング</option>
+                </select>
+              </label>
+              <label>
                 <span data-i18n="sellingPrice">販売価格</span>
                 <input id="sellingPrice" type="number" min="0" step="0.01" value="39.99">
               </label>
               <label>
-                <span data-i18n="productCost">商品原価</span>
+                <span
+                  data-i18n="productCost"
+                  data-mode-stocked-i18n="productCost"
+                  data-mode-dropshipping-i18n="supplierItemCost"
+                >商品原価</span>
                 <input id="productCost" type="number" min="0" step="0.01" value="12">
               </label>
               <label>
-                <span data-i18n="inboundShipping">仕入れ/入庫送料</span>
+                <span
+                  data-i18n="inboundShipping"
+                  data-mode-stocked-i18n="inboundShipping"
+                  data-mode-dropshipping-i18n="optionalLandedCost"
+                >仕入れ/入庫送料</span>
                 <input id="inboundShipping" type="number" min="0" step="0.01" value="3.50">
               </label>
               <label>
@@ -159,22 +174,43 @@
                 <input id="customerShipping" type="number" min="0" step="0.01" value="0">
               </label>
               <label>
-                <span data-i18n="sellerShipping">販売者負担送料</span>
+                <span
+                  data-i18n="sellerShipping"
+                  data-mode-stocked-i18n="sellerShipping"
+                  data-mode-dropshipping-i18n="supplierShippingFulfillment"
+                >販売者負担送料</span>
                 <input id="sellerShipping" type="number" min="0" step="0.01" value="4">
               </label>
               <label>
-                <span data-i18n="returnRate">返品率 (%)</span>
+                <span
+                  data-i18n="returnRate"
+                  data-mode-stocked-i18n="returnRate"
+                  data-mode-dropshipping-i18n="refundDisputeRate"
+                >返品率 (%)</span>
                 <input id="returnRate" type="number" min="0" max="100" step="0.1" value="5">
               </label>
               <label>
-                <span data-i18n="returnLoss">返品 1 件あたり損失</span>
+                <span
+                  data-i18n="returnLoss"
+                  data-mode-stocked-i18n="returnLoss"
+                  data-mode-dropshipping-i18n="refundDisputeLoss"
+                >返品 1 件あたり損失</span>
                 <input id="returnLoss" type="number" min="0" step="0.01" value="8">
+              </label>
+              <label class="mode-only" data-mode-only="dropshipping" hidden>
+                <span data-i18n="supplierProcessingFee">仕入先処理料</span>
+                <input id="supplierProcessingFee" type="number" min="0" step="0.01" value="0">
+              </label>
+              <label class="mode-only" data-mode-only="dropshipping" hidden>
+                <span data-i18n="replacementReshipLoss">交換 / 再発送損失</span>
+                <input id="reshipLoss" type="number" min="0" step="0.01" value="0">
               </label>
               <label>
                 <span data-i18n="otherCost">その他費用</span>
                 <input id="otherCosts" type="number" min="0" step="0.01" value="0">
               </label>
             </div>
+            <p id="fulfillmentModeNote" class="mode-note" data-i18n="stockedModeNote">在庫モードは着地原価と在庫型フルフィルメントを含めます。</p>
           </fieldset>
 
           <fieldset>
@@ -300,7 +336,7 @@
           <div class="method-grid">
             <div>
               <h3 data-i18n="transparentDefaults">透明な初期値</h3>
-              <p data-i18n="assumptionsBody">すべての初期手数料は上書きできます。最終確認は各プラットフォームの管理画面で行ってください。</p>
+              <p data-i18n="assumptionsBody">すべての初期手数料は上書きできます。Amazon FBA、TikTok Shop、ドロップシッピング仕入先費用は各管理画面で確認してください。</p>
             </div>
             <div>
               <h3 data-i18n="lastVerified">最終確認</h3>
@@ -313,7 +349,7 @@
           <div>
             <p class="eyebrow" data-i18n="skuEconomics">SKU 収益性</p>
             <h2 id="seo-heading" data-i18n="seoHeading">商品投入前に各プラットフォームの利益を見積もる</h2>
-            <p data-i18n="seoBody">SkuROI は Shopify、TikTok Shop、Amazon FBA Lite を同じ商品シナリオで比較します。価格、着地原価、広告費、手数料、コミッション、配送費、返品損失を SKU 投入前に確認できます。</p>
+            <p data-i18n="seoBody">SkuROI は Shopify、TikTok Shop、Amazon FBA Lite を同じ商品シナリオで比較します。在庫モードまたはドロップシッピングモードで、価格、着地原価、仕入先履行、広告費、手数料、コミッション、配送費、返金損失を SKU 投入前に確認できます。</p>
           </div>
           <div class="faq-grid">
             <article>

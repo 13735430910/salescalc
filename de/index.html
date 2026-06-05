@@ -6,7 +6,7 @@
     <title>SkuROI - SKU Gewinn- und ROI-Rechner</title>
     <meta
       name="description"
-      content="Vergleiche Nettogewinn, Marge, ROI, Break-even-Preis und Gebührenannahmen für Shopify, TikTok Shop und Amazon FBA Lite."
+      content="Vergleiche Nettogewinn, Marge, ROI, Break-even-Preis und Gebührenannahmen für Shopify, TikTok Shop, Amazon FBA Lite und Dropshipping."
     >
     <meta name="robots" content="index,follow">
     <link rel="canonical" href="https://skuroi.com/de/">
@@ -23,7 +23,7 @@
     <meta property="og:title" content="SkuROI - SKU Gewinn- und ROI-Rechner">
     <meta
       property="og:description"
-      content="Vergleiche Nettogewinn, Marge, ROI, Break-even-Preis und Gebührenannahmen für Shopify, TikTok Shop und Amazon FBA Lite."
+      content="Vergleiche Nettogewinn, Marge, ROI, Break-even-Preis und Gebührenannahmen für Shopify, TikTok Shop, Amazon FBA Lite und Dropshipping."
     >
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://skuroi.com/de/">
@@ -31,7 +31,7 @@
     <meta name="twitter:title" content="SkuROI - SKU Gewinn- und ROI-Rechner">
     <meta
       name="twitter:description"
-      content="Schätze Nettogewinn, Marge, ROI und Break-even-Preis für Shopify, TikTok Shop und Amazon FBA Lite."
+      content="Schätze Nettogewinn, Marge, ROI und Break-even-Preis für Lager- und Dropshipping-Szenarien."
     >
     <meta name="theme-color" content="#0b1220">
     <link rel="stylesheet" href="/styles.css">
@@ -60,7 +60,7 @@
                               "name": "Was berechnet SkuROI?",
                               "acceptedAnswer": {
                                       "@type": "Answer",
-                                      "text": "SkuROI schätzt Nettogewinn, Marge, ROI, Break-even-Preis und maximal tragbare Werbekosten pro SKU für Shopify, TikTok Shop und Amazon FBA Lite."
+                                      "text": "SkuROI schätzt Nettogewinn, Marge, ROI, Break-even-Preis und maximal tragbare Werbekosten pro SKU für Shopify, TikTok Shop, Amazon FBA Lite, Inventar und Dropshipping."
                               }
                       },
                       {
@@ -143,15 +143,30 @@
             <legend data-i18n="productEconomics">Produktökonomie</legend>
             <div class="control-grid">
               <label>
+                <span data-i18n="fulfillmentMode">Fulfillment-Modus</span>
+                <select id="fulfillmentMode">
+                  <option value="stocked" data-i18n="stockedInventory">Lager / Inventar</option>
+                  <option value="dropshipping" data-i18n="dropshipping">Dropshipping</option>
+                </select>
+              </label>
+              <label>
                 <span data-i18n="sellingPrice">Verkaufspreis</span>
                 <input id="sellingPrice" type="number" min="0" step="0.01" value="39.99">
               </label>
               <label>
-                <span data-i18n="productCost">Produktkosten</span>
+                <span
+                  data-i18n="productCost"
+                  data-mode-stocked-i18n="productCost"
+                  data-mode-dropshipping-i18n="supplierItemCost"
+                >Produktkosten</span>
                 <input id="productCost" type="number" min="0" step="0.01" value="12">
               </label>
               <label>
-                <span data-i18n="inboundShipping">Eingangsversand</span>
+                <span
+                  data-i18n="inboundShipping"
+                  data-mode-stocked-i18n="inboundShipping"
+                  data-mode-dropshipping-i18n="optionalLandedCost"
+                >Eingangsversand</span>
                 <input id="inboundShipping" type="number" min="0" step="0.01" value="3.50">
               </label>
               <label>
@@ -159,22 +174,43 @@
                 <input id="customerShipping" type="number" min="0" step="0.01" value="0">
               </label>
               <label>
-                <span data-i18n="sellerShipping">Versandkosten Verkäufer</span>
+                <span
+                  data-i18n="sellerShipping"
+                  data-mode-stocked-i18n="sellerShipping"
+                  data-mode-dropshipping-i18n="supplierShippingFulfillment"
+                >Versandkosten Verkäufer</span>
                 <input id="sellerShipping" type="number" min="0" step="0.01" value="4">
               </label>
               <label>
-                <span data-i18n="returnRate">Retourenquote (%)</span>
+                <span
+                  data-i18n="returnRate"
+                  data-mode-stocked-i18n="returnRate"
+                  data-mode-dropshipping-i18n="refundDisputeRate"
+                >Retourenquote (%)</span>
                 <input id="returnRate" type="number" min="0" max="100" step="0.1" value="5">
               </label>
               <label>
-                <span data-i18n="returnLoss">Verlust pro Retoure</span>
+                <span
+                  data-i18n="returnLoss"
+                  data-mode-stocked-i18n="returnLoss"
+                  data-mode-dropshipping-i18n="refundDisputeLoss"
+                >Verlust pro Retoure</span>
                 <input id="returnLoss" type="number" min="0" step="0.01" value="8">
+              </label>
+              <label class="mode-only" data-mode-only="dropshipping" hidden>
+                <span data-i18n="supplierProcessingFee">Lieferanten-Bearbeitungsgebühr</span>
+                <input id="supplierProcessingFee" type="number" min="0" step="0.01" value="0">
+              </label>
+              <label class="mode-only" data-mode-only="dropshipping" hidden>
+                <span data-i18n="replacementReshipLoss">Ersatz- / Neuversandverlust</span>
+                <input id="reshipLoss" type="number" min="0" step="0.01" value="0">
               </label>
               <label>
                 <span data-i18n="otherCost">Sonstige Kosten</span>
                 <input id="otherCosts" type="number" min="0" step="0.01" value="0">
               </label>
             </div>
+            <p id="fulfillmentModeNote" class="mode-note" data-i18n="stockedModeNote">Der Inventarmodus berücksichtigt Landed Cost und Fulfillment mit Lagerbestand.</p>
           </fieldset>
 
           <fieldset>
@@ -300,7 +336,7 @@
           <div class="method-grid">
             <div>
               <h3 data-i18n="transparentDefaults">Transparente Standardwerte</h3>
-              <p data-i18n="assumptionsBody">Alle Standardgebühren können überschrieben werden. Prüfe finale Werte im jeweiligen Plattform-Dashboard.</p>
+              <p data-i18n="assumptionsBody">Alle Standardgebühren können überschrieben werden. Prüfe finale Werte in Shopify, TikTok Shop, Amazon FBA und bei Dropshipping-Lieferanten.</p>
             </div>
             <div>
               <h3 data-i18n="lastVerified">Zuletzt geprüft</h3>
@@ -313,7 +349,7 @@
           <div>
             <p class="eyebrow" data-i18n="skuEconomics">SKU-Ökonomie</p>
             <h2 id="seo-heading" data-i18n="seoHeading">Schätze Plattformgewinn vor dem Produktlaunch</h2>
-            <p data-i18n="seoBody">SkuROI vergleicht Shopify, TikTok Shop und Amazon FBA Lite mit einem einheitlichen Produktszenario. Teste Preis, Landed Cost, Werbung, Gebühren, Provisionen, Fulfillment und Retourenverlust vor der SKU-Entscheidung.</p>
+            <p data-i18n="seoBody">SkuROI vergleicht Shopify, TikTok Shop und Amazon FBA Lite mit einem einheitlichen Produktszenario. Nutze Inventar- oder Dropshipping-Modus, um Preis, Landed Cost, Lieferanten-Fulfillment, Werbung, Gebühren, Provisionen, Fulfillment und Erstattungsverluste vor der SKU-Entscheidung zu testen.</p>
           </div>
           <div class="faq-grid">
             <article>

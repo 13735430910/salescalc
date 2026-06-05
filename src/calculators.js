@@ -35,6 +35,7 @@
   }
 
   function common(input) {
+    const fulfillmentMode = input.fulfillmentMode === "dropshipping" ? "dropshipping" : "stocked";
     const sellingPrice = Math.max(0, toNumber(input.sellingPrice));
     const customerShipping = Math.max(0, toNumber(input.customerShipping));
     const productCost = Math.max(0, toNumber(input.productCost));
@@ -43,11 +44,19 @@
     const returnRate = clamp(input.returnRate, 0, 1);
     const returnLoss = Math.max(0, toNumber(input.returnLoss));
     const otherCosts = Math.max(0, toNumber(input.otherCosts));
+    const supplierProcessingFee =
+      fulfillmentMode === "dropshipping" ? Math.max(0, toNumber(input.supplierProcessingFee)) : 0;
+    const reshipLoss =
+      fulfillmentMode === "dropshipping" ? Math.max(0, toNumber(input.reshipLoss)) : 0;
     const grossRevenue = sellingPrice + customerShipping;
     const expectedReturnLoss = returnRate * returnLoss;
-    const baseInventoryCost = productCost + inboundShipping;
+    const baseInventoryCost =
+      fulfillmentMode === "dropshipping"
+        ? productCost + inboundShipping + sellerShipping + supplierProcessingFee
+        : productCost + inboundShipping;
 
     return {
+      fulfillmentMode,
       sellingPrice,
       customerShipping,
       productCost,
@@ -56,6 +65,8 @@
       returnRate,
       returnLoss,
       otherCosts,
+      supplierProcessingFee,
+      reshipLoss,
       grossRevenue,
       expectedReturnLoss,
       baseInventoryCost
@@ -126,6 +137,8 @@
         { label: "Payment fee", amount: paymentFee, color: "#7c3aed" },
         { label: "CAC / ads", amount: cac, color: "#dc2626" },
         { label: "App cost", amount: appCost, color: "#a16207" },
+        { label: "Supplier processing", amount: data.supplierProcessingFee, color: "#0891b2" },
+        { label: "Replacement / reship loss", amount: data.reshipLoss, color: "#f97316" },
         { label: "Return loss", amount: data.expectedReturnLoss, color: "#be123c" },
         { label: "Other cost", amount: data.otherCosts, color: "#475569" }
       ],
@@ -134,6 +147,7 @@
       {
         plan: plan.label,
         payment: payment.label,
+        fulfillmentMode: data.fulfillmentMode,
         lastVerifiedAt: market.lastVerifiedAt
       }
     );
@@ -170,6 +184,8 @@
         { label: "Processing fee", amount: processingFee, color: "#7c3aed" },
         { label: "Affiliate commission", amount: affiliateFee, color: "#db2777" },
         { label: "Ads / GMV Max", amount: adsCost, color: "#dc2626" },
+        { label: "Supplier processing", amount: data.supplierProcessingFee, color: "#0891b2" },
+        { label: "Replacement / reship loss", amount: data.reshipLoss, color: "#f97316" },
         { label: "Return loss", amount: data.expectedReturnLoss, color: "#be123c" },
         { label: "Other cost", amount: data.otherCosts, color: "#475569" }
       ],
@@ -179,6 +195,7 @@
         referralRate,
         affiliateRate,
         processingEnabled,
+        fulfillmentMode: data.fulfillmentMode,
         lastVerifiedAt: market.lastVerifiedAt
       }
     );
@@ -215,6 +232,8 @@
         { label: "FBA fulfillment", amount: fbaFee, color: "#92400e" },
         { label: "Storage", amount: storageFee, color: "#a16207" },
         { label: "PPC ads", amount: ppcCost, color: "#dc2626" },
+        { label: "Supplier processing", amount: data.supplierProcessingFee, color: "#0891b2" },
+        { label: "Replacement / reship loss", amount: data.reshipLoss, color: "#f97316" },
         { label: "Return loss", amount: data.expectedReturnLoss, color: "#be123c" },
         { label: "Other Amazon cost", amount: amazonOtherCosts + data.otherCosts, color: "#475569" }
       ],
@@ -223,6 +242,7 @@
       {
         category,
         referralRate,
+        fulfillmentMode: data.fulfillmentMode,
         lastVerifiedAt: market.lastVerifiedAt
       }
     );

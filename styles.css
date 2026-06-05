@@ -369,6 +369,17 @@ button:focus {
   accent-color: var(--teal);
 }
 
+.mode-note {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.mode-only[hidden] {
+  display: none;
+}
+
 .results-panel {
   display: grid;
   gap: 16px;
@@ -555,6 +566,11 @@ button:focus {
   margin: 0;
   color: var(--muted);
   font-size: 0.78rem;
+}
+
+.warning-note {
+  color: var(--amber);
+  font-weight: 800;
 }
 
 .method-panel,

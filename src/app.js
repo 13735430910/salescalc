@@ -96,8 +96,10 @@
   const exportCsvButton = document.getElementById("exportCsv");
   const languageSelect = document.getElementById("languageSelect");
   const saveStatus = document.getElementById("saveStatus");
+  const fulfillmentModeNote = document.getElementById("fulfillmentModeNote");
   const STORAGE_KEY = "skuroi.calculator.inputs.v1";
   const SHARE_KEYS = {
+    fulfillmentMode: "fm",
     sellingPrice: "p",
     productCost: "pc",
     inboundShipping: "is",
@@ -116,6 +118,8 @@
     tiktokProcessingRate: "tpr",
     tiktokProcessingFixed: "tpf",
     tiktokProcessingEnabled: "tpe",
+    supplierProcessingFee: "spf",
+    reshipLoss: "rx",
     amazonCategory: "ac",
     amazonReferralRate: "ar",
     amazonFbaFee: "af",
@@ -127,6 +131,7 @@
     Object.entries(SHARE_KEYS).map(([id, key]) => [key, id])
   );
   const INPUT_LABEL_KEYS = {
+    fulfillmentMode: "fulfillmentMode",
     sellingPrice: "sellingPrice",
     productCost: "productCost",
     inboundShipping: "inboundShipping",
@@ -145,6 +150,8 @@
     tiktokProcessingRate: "processingFeePct",
     tiktokProcessingFixed: "processingFixedFee",
     tiktokProcessingEnabled: "countProcessing",
+    supplierProcessingFee: "supplierProcessingFee",
+    reshipLoss: "replacementReshipLoss",
     amazonCategory: "category",
     amazonReferralRate: "manualReferralPct",
     amazonFbaFee: "fbaFee",
@@ -152,7 +159,20 @@
     amazonPpcCost: "ppcCost",
     amazonOtherCosts: "otherAmazonCost"
   };
+  const MODE_INPUT_LABEL_KEYS = {
+    dropshipping: {
+      productCost: "supplierItemCost",
+      inboundShipping: "optionalLandedCost",
+      sellerShipping: "supplierShippingFulfillment",
+      returnRate: "refundDisputeRate",
+      returnLoss: "refundDisputeLoss"
+    }
+  };
   const VALUE_LABEL_KEYS = {
+    fulfillmentMode: {
+      stocked: "stockedInventory",
+      dropshipping: "dropshipping"
+    },
     shopifyPlan: {
       basic: "basic",
       grow: "grow",
@@ -187,7 +207,17 @@
     "FBA fulfillment": "fbaFulfillmentLabel",
     "Storage": "storageLabel",
     "PPC ads": "ppcAdsLabel",
-    "Other Amazon cost": "otherAmazonCostLabel"
+    "Other Amazon cost": "otherAmazonCostLabel",
+    "Supplier processing": "supplierProcessingFee",
+    "Replacement / reship loss": "replacementReshipLoss"
+  };
+  const MODE_COST_LABEL_KEYS = {
+    dropshipping: {
+      "Product cost": "supplierItemCost",
+      "Inbound shipping": "optionalLandedCost",
+      "Seller shipping": "supplierShippingFulfillment",
+      "Return loss": "refundDisputeLoss"
+    }
   };
   const MARKET_LABEL_KEYS = {
     shopify_us: "shopifyUs",
@@ -196,6 +226,7 @@
   };
 
   const defaults = {
+    fulfillmentMode: "stocked",
     sellingPrice: 39.99,
     productCost: 12,
     inboundShipping: 3.5,
@@ -214,6 +245,8 @@
     tiktokProcessingRate: 0,
     tiktokProcessingFixed: 0,
     tiktokProcessingEnabled: false,
+    supplierProcessingFee: 0,
+    reshipLoss: 0,
     amazonCategory: "electronics",
     amazonReferralRate: 15,
     amazonFbaFee: 4.15,
@@ -221,6 +254,7 @@
     amazonPpcCost: 5,
     amazonOtherCosts: 0
   };
+  let activeFulfillmentMode = defaults.fulfillmentMode;
 
   function t(key) {
     return messages[key] || fallbackMessages[key] || key;
@@ -254,6 +288,55 @@
       dateStyle: "medium",
       timeStyle: "short"
     }).format(value);
+  }
+
+  function currentFulfillmentMode() {
+    const element = document.getElementById("fulfillmentMode");
+    return element && element.value === "dropshipping" ? "dropshipping" : "stocked";
+  }
+
+  function setNumberValue(id, nextValue) {
+    const element = document.getElementById(id);
+
+    if (element) {
+      element.value = String(nextValue);
+    }
+  }
+
+  function applyFulfillmentModeDefaults(nextMode, previousMode) {
+    if (nextMode !== "dropshipping" || previousMode === "dropshipping") {
+      return;
+    }
+
+    const inbound = document.getElementById("inboundShipping");
+
+    if (inbound && String(inbound.value) === String(defaults.inboundShipping)) {
+      setNumberValue("inboundShipping", 0);
+    }
+  }
+
+  function applyFulfillmentModeUi() {
+    const mode = currentFulfillmentMode();
+
+    document.querySelectorAll("[data-mode-stocked-i18n][data-mode-dropshipping-i18n]").forEach((element) => {
+      const key = mode === "dropshipping"
+        ? element.dataset.modeDropshippingI18n
+        : element.dataset.modeStockedI18n;
+
+      if (key) {
+        element.textContent = t(key);
+      }
+    });
+
+    document.querySelectorAll("[data-mode-only]").forEach((element) => {
+      element.hidden = element.dataset.modeOnly !== mode;
+    });
+
+    if (fulfillmentModeNote) {
+      const noteKey = mode === "dropshipping" ? "dropshippingModeNote" : "stockedModeNote";
+      fulfillmentModeNote.dataset.i18n = noteKey;
+      fulfillmentModeNote.textContent = t(noteKey);
+    }
   }
 
   function number(id) {
@@ -327,6 +410,7 @@
 
   function getState() {
     return {
+      fulfillmentMode: currentFulfillmentMode(),
       sellingPrice: number("sellingPrice"),
       productCost: number("productCost"),
       inboundShipping: number("inboundShipping"),
@@ -335,6 +419,8 @@
       returnRate: number("returnRate") / 100,
       returnLoss: number("returnLoss"),
       otherCosts: number("otherCosts"),
+      supplierProcessingFee: number("supplierProcessingFee"),
+      reshipLoss: number("reshipLoss"),
       shopify: {
         plan: value("shopifyPlan"),
         paymentMethod: value("shopifyPayment"),
@@ -377,6 +463,8 @@
 
   function setDefaults() {
     setFormValues(defaults);
+    activeFulfillmentMode = currentFulfillmentMode();
+    applyFulfillmentModeUi();
     render();
   }
 
@@ -448,11 +536,19 @@
     }
 
     setFormValues(defaults);
+    activeFulfillmentMode = currentFulfillmentMode();
+    applyFulfillmentModeUi();
     render({ persist: false });
     updateSaveStatus(t("savedDataCleared"));
   }
 
   function localizeCostLabel(label) {
+    const modeLabels = MODE_COST_LABEL_KEYS[currentFulfillmentMode()];
+
+    if (modeLabels && modeLabels[label]) {
+      return t(modeLabels[label]);
+    }
+
     return t(COST_LABEL_KEYS[label] || label);
   }
 
@@ -479,6 +575,9 @@
 
   function renderCard(result) {
     const profitClass = result.netProfit >= 0 ? "positive" : "negative";
+    const policyNote = currentFulfillmentMode() === "dropshipping" && result.id === "amazon"
+      ? `<p class="note warning-note">${escapeHtml(t("amazonDropshippingNote"))}</p>`
+      : "";
 
     return `
       <article class="platform-card" data-platform="${result.id}">
@@ -489,6 +588,7 @@
           </div>
           <span class="tag">${escapeHtml(result.id === "amazon" ? t("lite") : t("liveInputs"))}</span>
         </div>
+        ${policyNote}
 
         <div>
           <span class="metric-label">${escapeHtml(t("netProfit"))}</span>
@@ -539,6 +639,10 @@
     params.set("v", "1");
 
     Object.entries(SHARE_KEYS).forEach(([id, key]) => {
+      if (snapshot.fulfillmentMode !== "dropshipping" && ["supplierProcessingFee", "reshipLoss"].includes(id)) {
+        return;
+      }
+
       const next = snapshot[id];
       const fallback = defaults[id];
 
@@ -569,7 +673,20 @@
     return `"${text.replaceAll('"', '""')}"`;
   }
 
-  function snapshotLabel(id) {
+  function exportSnapshotEntries(snapshot) {
+    return Object.entries(snapshot).filter(([id]) =>
+      snapshot.fulfillmentMode === "dropshipping" ||
+      !["supplierProcessingFee", "reshipLoss"].includes(id)
+    );
+  }
+
+  function snapshotLabel(id, snapshot) {
+    const modeLabels = MODE_INPUT_LABEL_KEYS[snapshot.fulfillmentMode];
+
+    if (modeLabels && modeLabels[id]) {
+      return t(modeLabels[id]);
+    }
+
     return t(INPUT_LABEL_KEYS[id] || id);
   }
 
@@ -614,8 +731,8 @@
       ...resultRows(results),
       [],
       [t("input"), t("value")],
-      ...Object.entries(snapshot).map(([id, nextValue]) => [
-        snapshotLabel(id),
+      ...exportSnapshotEntries(snapshot).map(([id, nextValue]) => [
+        snapshotLabel(id, snapshot),
         snapshotValue(id, nextValue)
       ])
     ];
@@ -661,8 +778,8 @@
     const { results, best } = calc.calculateAll(getState(), rates);
     const snapshot = getFormSnapshot();
     const shareUrl = getShareUrl();
-    const inputRows = Object.entries(snapshot).map(([id, nextValue]) => [
-      snapshotLabel(id),
+    const inputRows = exportSnapshotEntries(snapshot).map(([id, nextValue]) => [
+      snapshotLabel(id, snapshot),
       snapshotValue(id, nextValue)
     ]);
     const documentHtml = `<!doctype html>
@@ -869,7 +986,16 @@
   applyStaticTranslations();
   setupLanguageSelect();
   form.addEventListener("input", render);
-  form.addEventListener("change", render);
+  form.addEventListener("change", (event) => {
+    if (event.target && event.target.id === "fulfillmentMode") {
+      const nextMode = currentFulfillmentMode();
+      applyFulfillmentModeDefaults(nextMode, activeFulfillmentMode);
+      activeFulfillmentMode = nextMode;
+      applyFulfillmentModeUi();
+    }
+
+    render();
+  });
   resetButton.addEventListener("click", setDefaults);
   clearSavedButton.addEventListener("click", clearSavedData);
   shareButton.addEventListener("click", shareConfig);
@@ -898,6 +1024,8 @@
   hydrateFromStorage();
   legacyHydrateFromQuery();
   hydrateFromQuery();
+  activeFulfillmentMode = currentFulfillmentMode();
+  applyFulfillmentModeUi();
   renderSources();
   render();
 })();

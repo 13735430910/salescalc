@@ -5,6 +5,7 @@ const calc = require("../src/calculators.js");
 
 function baseInput(overrides = {}) {
   return {
+    fulfillmentMode: "stocked",
     sellingPrice: 39.99,
     productCost: 12,
     inboundShipping: 3.5,
@@ -13,6 +14,8 @@ function baseInput(overrides = {}) {
     returnRate: 0.05,
     returnLoss: 8,
     otherCosts: 0,
+    supplierProcessingFee: 0,
+    reshipLoss: 0,
     shopify: {
       plan: "basic",
       paymentMethod: "standardCard",
@@ -51,6 +54,45 @@ test("calculates all three platforms without invalid numbers", () => {
     assert.equal(Number.isFinite(result.roi), true);
     assert.equal(Number.isFinite(result.breakEvenPrice), true);
   }
+});
+
+test("dropshipping supplier costs reduce profit", () => {
+  const base = calc.calculateShopify(
+    baseInput({
+      fulfillmentMode: "dropshipping",
+      inboundShipping: 0,
+      supplierProcessingFee: 0,
+      reshipLoss: 0
+    }),
+    rates
+  );
+  const withSupplierCosts = calc.calculateShopify(
+    baseInput({
+      fulfillmentMode: "dropshipping",
+      inboundShipping: 0,
+      supplierProcessingFee: 1.25,
+      reshipLoss: 2.5
+    }),
+    rates
+  );
+
+  assert.equal(base.netProfit - withSupplierCosts.netProfit, 3.75);
+});
+
+test("dropshipping uses supplier fulfillment cost in ROI denominator", () => {
+  const stocked = calc.calculateShopify(baseInput(), rates);
+  const dropshipping = calc.calculateShopify(
+    baseInput({
+      fulfillmentMode: "dropshipping",
+      inboundShipping: 0,
+      sellerShipping: 9,
+      supplierProcessingFee: 1
+    }),
+    rates
+  );
+
+  assert.equal(Number.isFinite(dropshipping.roi), true);
+  assert.notEqual(dropshipping.roi, stocked.roi);
 });
 
 test("Shopify payment fee changes by plan and payment method", () => {

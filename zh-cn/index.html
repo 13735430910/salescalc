@@ -6,7 +6,7 @@
     <title>SkuROI - SKU 利润和 ROI 计算器</title>
     <meta
       name="description"
-      content="比较 Shopify、TikTok Shop 和 Amazon FBA Lite 的 SKU 级利润、利润率、ROI、盈亏平衡价和费用假设。"
+      content="比较 Shopify、TikTok Shop、Amazon FBA Lite 和 Dropshipping 场景的 SKU 级利润、利润率、ROI、盈亏平衡价和费用假设。"
     >
     <meta name="robots" content="index,follow">
     <link rel="canonical" href="https://skuroi.com/zh-cn/">
@@ -23,7 +23,7 @@
     <meta property="og:title" content="SkuROI - SKU 利润和 ROI 计算器">
     <meta
       property="og:description"
-      content="比较 Shopify、TikTok Shop 和 Amazon FBA Lite 的 SKU 级利润、利润率、ROI、盈亏平衡价和费用假设。"
+      content="比较 Shopify、TikTok Shop、Amazon FBA Lite 和 Dropshipping 场景的 SKU 级利润、利润率、ROI、盈亏平衡价和费用假设。"
     >
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://skuroi.com/zh-cn/">
@@ -31,7 +31,7 @@
     <meta name="twitter:title" content="SkuROI - SKU 利润和 ROI 计算器">
     <meta
       name="twitter:description"
-      content="估算 Shopify、TikTok Shop 和 Amazon FBA Lite 的净利润、利润率、ROI 和盈亏平衡价。"
+      content="估算库存和 Dropshipping 履约场景下的净利润、利润率、ROI 和盈亏平衡价。"
     >
     <meta name="theme-color" content="#0b1220">
     <link rel="stylesheet" href="/styles.css">
@@ -60,7 +60,7 @@
                               "name": "SkuROI 会计算什么？",
                               "acceptedAnswer": {
                                       "@type": "Answer",
-                                      "text": "SkuROI 会估算 Shopify、TikTok Shop 和 Amazon FBA Lite 的 SKU 级净利润、利润率、ROI、盈亏平衡价以及最高可承受广告成本。"
+                                      "text": "SkuROI 会估算 Shopify、TikTok Shop、Amazon FBA Lite、库存和 Dropshipping 场景的 SKU 级净利润、利润率、ROI、盈亏平衡价以及最高可承受广告成本。"
                               }
                       },
                       {
@@ -143,15 +143,30 @@
             <legend data-i18n="productEconomics">商品经济模型</legend>
             <div class="control-grid">
               <label>
+                <span data-i18n="fulfillmentMode">履约模式</span>
+                <select id="fulfillmentMode">
+                  <option value="stocked" data-i18n="stockedInventory">备货 / 库存</option>
+                  <option value="dropshipping" data-i18n="dropshipping">Dropshipping</option>
+                </select>
+              </label>
+              <label>
                 <span data-i18n="sellingPrice">售价</span>
                 <input id="sellingPrice" type="number" min="0" step="0.01" value="39.99">
               </label>
               <label>
-                <span data-i18n="productCost">产品成本</span>
+                <span
+                  data-i18n="productCost"
+                  data-mode-stocked-i18n="productCost"
+                  data-mode-dropshipping-i18n="supplierItemCost"
+                >产品成本</span>
                 <input id="productCost" type="number" min="0" step="0.01" value="12">
               </label>
               <label>
-                <span data-i18n="inboundShipping">头程/到岸运费</span>
+                <span
+                  data-i18n="inboundShipping"
+                  data-mode-stocked-i18n="inboundShipping"
+                  data-mode-dropshipping-i18n="optionalLandedCost"
+                >头程/到岸运费</span>
                 <input id="inboundShipping" type="number" min="0" step="0.01" value="3.50">
               </label>
               <label>
@@ -159,22 +174,43 @@
                 <input id="customerShipping" type="number" min="0" step="0.01" value="0">
               </label>
               <label>
-                <span data-i18n="sellerShipping">卖家承担运费</span>
+                <span
+                  data-i18n="sellerShipping"
+                  data-mode-stocked-i18n="sellerShipping"
+                  data-mode-dropshipping-i18n="supplierShippingFulfillment"
+                >卖家承担运费</span>
                 <input id="sellerShipping" type="number" min="0" step="0.01" value="4">
               </label>
               <label>
-                <span data-i18n="returnRate">退货率 (%)</span>
+                <span
+                  data-i18n="returnRate"
+                  data-mode-stocked-i18n="returnRate"
+                  data-mode-dropshipping-i18n="refundDisputeRate"
+                >退货率 (%)</span>
                 <input id="returnRate" type="number" min="0" max="100" step="0.1" value="5">
               </label>
               <label>
-                <span data-i18n="returnLoss">每单退货损耗</span>
+                <span
+                  data-i18n="returnLoss"
+                  data-mode-stocked-i18n="returnLoss"
+                  data-mode-dropshipping-i18n="refundDisputeLoss"
+                >每单退货损耗</span>
                 <input id="returnLoss" type="number" min="0" step="0.01" value="8">
+              </label>
+              <label class="mode-only" data-mode-only="dropshipping" hidden>
+                <span data-i18n="supplierProcessingFee">供应商处理费</span>
+                <input id="supplierProcessingFee" type="number" min="0" step="0.01" value="0">
+              </label>
+              <label class="mode-only" data-mode-only="dropshipping" hidden>
+                <span data-i18n="replacementReshipLoss">补发 / 重发损耗</span>
+                <input id="reshipLoss" type="number" min="0" step="0.01" value="0">
               </label>
               <label>
                 <span data-i18n="otherCost">其他成本</span>
                 <input id="otherCosts" type="number" min="0" step="0.01" value="0">
               </label>
             </div>
+            <p id="fulfillmentModeNote" class="mode-note" data-i18n="stockedModeNote">库存模式会计入到岸成本和备货履约成本。</p>
           </fieldset>
 
           <fieldset>
@@ -300,7 +336,7 @@
           <div class="method-grid">
             <div>
               <h3 data-i18n="transparentDefaults">透明默认值</h3>
-              <p data-i18n="assumptionsBody">所有默认费用都可以覆盖。最终核算请以平台后台为准，尤其是 Amazon FBA 和 TikTok Shop 卖家费用。</p>
+              <p data-i18n="assumptionsBody">所有默认费用都可以覆盖。最终核算请以平台后台为准，尤其是 Amazon FBA、TikTok Shop 和 Dropshipping 供应商费用。</p>
             </div>
             <div>
               <h3 data-i18n="lastVerified">最后核验</h3>
@@ -313,7 +349,7 @@
           <div>
             <p class="eyebrow" data-i18n="skuEconomics">SKU 经济模型</p>
             <h2 id="seo-heading" data-i18n="seoHeading">在上架产品前估算各平台利润</h2>
-            <p data-i18n="seoBody">SkuROI 帮助卖家用同一组商品参数比较 Shopify、TikTok Shop 和 Amazon FBA Lite。你可以在投入 SKU 前测试定价、到岸成本、广告花费、平台佣金、达人佣金、履约费和退货损耗。</p>
+            <p data-i18n="seoBody">SkuROI 帮助卖家用同一组商品参数比较 Shopify、TikTok Shop 和 Amazon FBA Lite。你可以使用库存模式或 Dropshipping 模式，在投入 SKU 前测试定价、到岸成本、供应商履约、广告花费、平台佣金、达人佣金、配送费和退款损耗。</p>
           </div>
           <div class="faq-grid">
             <article>
