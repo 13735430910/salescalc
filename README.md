@@ -80,6 +80,58 @@ Rules:
 - Update `lastVerifiedAt` when fee data is reviewed.
 - Do not represent Amazon FBA Lite as ASIN-level exact accounting.
 
+## Local Policy Watch
+
+The repository includes a local watcher for Shopify, TikTok Shop, and Amazon fee-policy pages.
+
+Daily behavior:
+
+- Fetch the configured policy source pages.
+- Extract only known numeric fee signals.
+- Compare extracted numbers with `src/rates.js`.
+- If no numeric value changed, write local state/logs only and do not push.
+- If a numeric value changed, update `src/rates.js`, run tests and locale build, commit, and push to GitHub.
+
+This keeps Cloudflare Pages builds low because GitHub is pushed only when tracked files actually change.
+
+Manual dry run:
+
+```bash
+npm run policy:check
+```
+
+Manual update run:
+
+```bash
+npm run policy:update
+```
+
+Install the daily cron job:
+
+```bash
+SALES_CALC_POLICY_TIME=09:30 npm run policy:install-cron
+```
+
+For this workspace, the Git metadata is stored outside the project folder. Install cron with:
+
+```bash
+SALES_CALC_POLICY_TIME=09:30 SALES_CALC_GIT_DIR=/tmp/salescalc.git npm run policy:install-cron
+```
+
+Preview the cron entry without installing:
+
+```bash
+SALES_CALC_POLICY_TIME=09:30 SALES_CALC_GIT_DIR=/tmp/salescalc.git bash scripts/install-policy-cron.sh --print
+```
+
+Local state and logs are ignored by git:
+
+- `var/policy-watch-state.json`
+- `var/policy-watch.log`
+- `var/policy-watch-run.log`
+
+The watcher refuses to run if tracked files are already dirty, so it cannot accidentally commit unrelated local edits. Public policy pages can be blocked or reformatted; when a page hash changes but the numeric parser cannot verify a changed fee, the watcher logs the condition and skips pushing.
+
 ## Disclaimer
 
 SkuROI provides planning estimates only. Actual platform payouts, fees, taxes, promotions, refunds, and account-specific adjustments can differ.

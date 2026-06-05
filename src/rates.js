@@ -63,8 +63,8 @@
         lastVerifiedAt: "2026-06-05",
         sources: [
           {
-            label: "TikTok affiliate commission guidance",
-            url: "https://ads.tiktok.com/help/article/about-setting-different-affiliate-commission-rates-for-tiktok-shop-ads"
+            label: "TikTok Shop referral fee updates",
+            url: "https://seller-us.tiktok.com/university/essay?knowledge_id=5982454398175018"
           }
         ],
         defaults: {
@@ -83,8 +83,8 @@
         lastVerifiedAt: "2026-06-05",
         sources: [
           {
-            label: "Amazon 2026 US fee update",
-            url: "https://sellercentral.amazon.com/seller-forums/discussions/t/f3fa3211-820b-4e2e-a023-158a9cf55f99"
+            label: "Amazon standard selling fees",
+            url: "https://sell.amazon.com/pricing"
           }
         ],
         referralFees: {
@@ -94,6 +94,7 @@
         },
         notes: [
           "Lite mode does not calculate ASIN-level FBA fees.",
+          "Amazon apparel and some categories use tiered referral fees; use manual override for exact estimates.",
           "Enter fulfillment fees from Amazon Revenue Calculator or Seller Central for final estimates."
         ]
       }
