@@ -9,9 +9,39 @@
   const sourceList = document.getElementById("sourceList");
   const resetButton = document.getElementById("resetForm");
   const clearSavedButton = document.getElementById("clearSaved");
-  const copyButton = document.getElementById("copySummary");
+  const shareButton = document.getElementById("shareConfig");
+  const exportButton = document.getElementById("exportData");
   const saveStatus = document.getElementById("saveStatus");
   const STORAGE_KEY = "skuroi.calculator.inputs.v1";
+  const SHARE_KEYS = {
+    sellingPrice: "p",
+    productCost: "pc",
+    inboundShipping: "is",
+    customerShipping: "cs",
+    sellerShipping: "ss",
+    returnRate: "rr",
+    returnLoss: "rl",
+    otherCosts: "oc",
+    shopifyPlan: "sp",
+    shopifyPayment: "pm",
+    shopifyCac: "sc",
+    shopifyAppCost: "sa",
+    tiktokReferralRate: "tr",
+    tiktokAffiliateRate: "ta",
+    tiktokAdsCost: "tc",
+    tiktokProcessingRate: "tpr",
+    tiktokProcessingFixed: "tpf",
+    tiktokProcessingEnabled: "tpe",
+    amazonCategory: "ac",
+    amazonReferralRate: "ar",
+    amazonFbaFee: "af",
+    amazonStorageFee: "as",
+    amazonPpcCost: "ap",
+    amazonOtherCosts: "ao"
+  };
+  const SHARE_IDS = Object.fromEntries(
+    Object.entries(SHARE_KEYS).map(([id, key]) => [key, id])
+  );
 
   const defaults = {
     sellingPrice: 39.99,
@@ -139,7 +169,13 @@
       return;
     }
 
-    saveStatus.textContent = message;
+    const text = saveStatus.querySelector(".status-text");
+    if (text) {
+      text.textContent = message;
+    } else {
+      saveStatus.textContent = message;
+    }
+    saveStatus.title = message;
   }
 
   function saveFormSnapshot() {
@@ -264,22 +300,112 @@
       .join("");
   }
 
-  function updateQuery(state) {
+  function snapshotToShareParams(snapshot) {
     const params = new URLSearchParams();
-    [
-      ["price", state.sellingPrice],
-      ["cost", state.productCost],
-      ["ship", state.inboundShipping],
-      ["sellerShip", state.sellerShipping],
-      ["shopifyCac", state.shopify.cac],
-      ["tiktokAds", state.tiktok.adsCost],
-      ["amazonPpc", state.amazon.ppcCost]
-    ].forEach(([key, next]) => {
-      params.set(key, String(next));
+    params.set("v", "1");
+
+    Object.entries(SHARE_KEYS).forEach(([id, key]) => {
+      const next = snapshot[id];
+      const fallback = defaults[id];
+
+      if (String(next) !== String(fallback)) {
+        params.set(key, String(next));
+      }
     });
 
-    const nextUrl = `${window.location.pathname}?${params.toString()}`;
-    window.history.replaceState(null, "", nextUrl);
+    return params;
+  }
+
+  function getShareUrl() {
+    const params = snapshotToShareParams(getFormSnapshot());
+    const query = params.toString();
+    return `${window.location.origin}${window.location.pathname}${query === "v=1" ? "" : `?${query}`}`;
+  }
+
+  function updateQuery() {
+    const nextUrl = getShareUrl();
+
+    if (window.location.href !== nextUrl) {
+      window.history.replaceState(null, "", nextUrl);
+    }
+  }
+
+  function csvCell(value) {
+    const text = String(value ?? "");
+    return `"${text.replaceAll('"', '""')}"`;
+  }
+
+  function downloadCsv() {
+    const { results, best } = calc.calculateAll(getState(), rates);
+    const snapshot = getFormSnapshot();
+    const rows = [
+      ["SkuROI export", new Date().toISOString()],
+      ["Share URL", getShareUrl()],
+      [],
+      ["Best platform", best.label],
+      ["Best net profit", money(best.netProfit)],
+      ["Best margin", percent(best.profitMargin)],
+      [],
+      ["Platform", "Net profit", "Margin", "ROI", "Break-even", "Max CAC / ads"],
+      ...results.map((item) => [
+        item.label,
+        money(item.netProfit),
+        percent(item.profitMargin),
+        percent(item.roi),
+        money(item.breakEvenPrice),
+        money(item.maxAllowableMarketingCost)
+      ]),
+      [],
+      ["Input", "Value"],
+      ...Object.entries(snapshot)
+    ];
+    const csv = rows.map((row) => row.map(csvCell).join(",")).join("\n");
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+    const link = document.createElement("a");
+    const stamp = new Date().toISOString().slice(0, 10);
+
+    link.href = URL.createObjectURL(blob);
+    link.download = `skuroi-${stamp}.csv`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(link.href);
+    updateSaveStatus("CSV exported");
+  }
+
+  function copyShareUrl(url) {
+    if (!navigator.clipboard) {
+      window.prompt("Copy share link", url);
+      updateSaveStatus("Share link ready");
+      return;
+    }
+
+    navigator.clipboard.writeText(url).then(() => {
+      updateSaveStatus("Share link copied");
+    }).catch(() => {
+      window.prompt("Copy share link", url);
+      updateSaveStatus("Share link ready");
+    });
+  }
+
+  function shareConfig() {
+    const url = getShareUrl();
+    const sharePayload = {
+      title: "SkuROI SKU Profit and ROI Calculator",
+      text: "Review this SKU profit scenario in SkuROI.",
+      url
+    };
+
+    if (navigator.share) {
+      navigator.share(sharePayload).then(() => {
+        updateSaveStatus("Share opened");
+      }).catch(() => {
+        copyShareUrl(url);
+      });
+      return;
+    }
+
+    copyShareUrl(url);
   }
 
   function render(options = {}) {
@@ -290,37 +416,35 @@
     bestProfit.textContent = money(best.netProfit);
     bestMargin.textContent = percent(best.profitMargin);
     resultHost.innerHTML = results.map(renderCard).join("");
-    updateQuery(state);
+    updateQuery();
 
     if (options.persist !== false) {
       saveFormSnapshot();
     }
   }
 
-  function copySummary() {
-    const { results, best } = calc.calculateAll(getState(), rates);
-    const lines = [
-      `Best platform: ${best.label}`,
-      `Best net profit: ${money(best.netProfit)}`,
-      `Best margin: ${percent(best.profitMargin)}`,
-      "",
-      ...results.map(
-        (item) =>
-          `${item.label}: profit ${money(item.netProfit)}, margin ${percent(item.profitMargin)}, ROI ${percent(item.roi)}`
-      )
-    ];
+  function hydrateFromQuery() {
+    const params = new URLSearchParams(window.location.search);
 
-    if (!navigator.clipboard) {
-      window.prompt("Copy summary", lines.join("\n"));
-      return;
-    }
+    Object.entries(SHARE_IDS).forEach(([key, id]) => {
+      if (!params.has(key)) {
+        return;
+      }
 
-    navigator.clipboard.writeText(lines.join("\n")).catch(() => {
-      window.prompt("Copy summary", lines.join("\n"));
+      const element = document.getElementById(id);
+      if (!element) {
+        return;
+      }
+
+      if (element.type === "checkbox") {
+        element.checked = params.get(key) === "true" || params.get(key) === "1";
+      } else {
+        element.value = params.get(key);
+      }
     });
   }
 
-  function hydrateFromQuery() {
+  function legacyHydrateFromQuery() {
     const params = new URLSearchParams(window.location.search);
     const map = {
       price: "sellingPrice",
@@ -343,9 +467,11 @@
   form.addEventListener("change", render);
   resetButton.addEventListener("click", setDefaults);
   clearSavedButton.addEventListener("click", clearSavedData);
-  copyButton.addEventListener("click", copySummary);
+  shareButton.addEventListener("click", shareConfig);
+  exportButton.addEventListener("click", downloadCsv);
 
   hydrateFromStorage();
+  legacyHydrateFromQuery();
   hydrateFromQuery();
   renderSources();
   render();

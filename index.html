@@ -83,9 +83,13 @@
         </div>
       </div>
       <div class="topbar-actions">
-        <span id="saveStatus" class="save-status" aria-live="polite">Saved locally</span>
-        <button id="copySummary" class="button button-secondary" type="button">Copy summary</button>
-        <button id="clearSaved" class="button button-ghost" type="button">Clear saved</button>
+        <span id="saveStatus" class="save-status" aria-live="polite">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span class="status-text">Saved locally</span>
+        </span>
+        <button id="shareConfig" class="button button-secondary" type="button">Share</button>
+        <button id="exportData" class="button button-secondary" type="button">Export</button>
+        <button id="clearSaved" class="button button-ghost" type="button">Clear</button>
         <button id="resetForm" class="button" type="button">Reset</button>
       </div>
     </header>
