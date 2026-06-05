@@ -1,15 +1,15 @@
 <!doctype html>
-<html lang="en" data-locale="en">
+<html lang="zh-CN" data-locale="zh-cn">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SkuROI - SKU Profit and ROI Calculator</title>
+    <title>SkuROI - SKU 利润和 ROI 计算器</title>
     <meta
       name="description"
-      content="Compare SKU-level profit, margin, ROI, break-even price, and fee assumptions for Shopify, TikTok Shop, and Amazon FBA Lite."
+      content="比较 Shopify、TikTok Shop 和 Amazon FBA Lite 的 SKU 级利润、利润率、ROI、盈亏平衡价和费用假设。"
     >
     <meta name="robots" content="index,follow">
-    <link rel="canonical" href="https://skuroi.com/">
+    <link rel="canonical" href="https://skuroi.com/zh-cn/">
     <link rel="alternate" hreflang="x-default" href="https://skuroi.com/">
     <link rel="alternate" hreflang="en" href="https://skuroi.com/">
     <link rel="alternate" hreflang="zh-CN" href="https://skuroi.com/zh-cn/">
@@ -20,18 +20,18 @@
     <link rel="alternate" hreflang="fr" href="https://skuroi.com/fr/">
     <link rel="alternate" hreflang="de" href="https://skuroi.com/de/">
     <link rel="alternate" hreflang="it" href="https://skuroi.com/it/">
-    <meta property="og:title" content="SkuROI - SKU Profit and ROI Calculator">
+    <meta property="og:title" content="SkuROI - SKU 利润和 ROI 计算器">
     <meta
       property="og:description"
-      content="Compare SKU-level profit, margin, ROI, break-even price, and fee assumptions for Shopify, TikTok Shop, and Amazon FBA Lite."
+      content="比较 Shopify、TikTok Shop 和 Amazon FBA Lite 的 SKU 级利润、利润率、ROI、盈亏平衡价和费用假设。"
     >
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://skuroi.com/">
+    <meta property="og:url" content="https://skuroi.com/zh-cn/">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="SkuROI - SKU Profit and ROI Calculator">
+    <meta name="twitter:title" content="SkuROI - SKU 利润和 ROI 计算器">
     <meta
       name="twitter:description"
-      content="Estimate net profit, margin, ROI, and break-even price across Shopify, TikTok Shop, and Amazon FBA Lite."
+      content="估算 Shopify、TikTok Shop 和 Amazon FBA Lite 的净利润、利润率、ROI 和盈亏平衡价。"
     >
     <meta name="theme-color" content="#0b1220">
     <link rel="stylesheet" href="/styles.css">
@@ -39,8 +39,8 @@
       {
               "@context": "https://schema.org",
               "@type": "WebApplication",
-              "name": "SkuROI SKU Profit and ROI Calculator",
-              "url": "https://skuroi.com/",
+              "name": "SkuROI SKU 利润和 ROI 计算器",
+              "url": "https://skuroi.com/zh-cn/",
               "applicationCategory": "BusinessApplication",
               "operatingSystem": "Any",
               "offers": {
@@ -57,26 +57,26 @@
               "mainEntity": [
                       {
                               "@type": "Question",
-                              "name": "What does SkuROI calculate?",
+                              "name": "SkuROI 会计算什么？",
                               "acceptedAnswer": {
                                       "@type": "Answer",
-                                      "text": "SkuROI estimates SKU-level net profit, profit margin, ROI, break-even price, and maximum allowable ad cost across Shopify, TikTok Shop, and Amazon FBA Lite."
+                                      "text": "SkuROI 会估算 Shopify、TikTok Shop 和 Amazon FBA Lite 的 SKU 级净利润、利润率、ROI、盈亏平衡价以及最高可承受广告成本。"
                               }
                       },
                       {
                               "@type": "Question",
-                              "name": "Are the fees exact?",
+                              "name": "费用是否完全准确？",
                               "acceptedAnswer": {
                                       "@type": "Answer",
-                                      "text": "No. Defaults are editable estimates. Always verify final fees in platform dashboards."
+                                      "text": "不是。默认值是可编辑估算值。最终费用应始终以平台后台为准。"
                               }
                       },
                       {
                               "@type": "Question",
-                              "name": "Where are my inputs saved?",
+                              "name": "我的输入保存在哪里？",
                               "acceptedAnswer": {
                                       "@type": "Answer",
-                                      "text": "Only in this browser through local storage. Use Clear saved to remove them."
+                                      "text": "只保存在当前浏览器本地。点击清除可删除保存数据。"
                               }
                       }
               ]
@@ -89,13 +89,13 @@
         <span class="brand-mark" aria-hidden="true">SR</span>
         <div>
           <p class="eyebrow" data-i18n="brandDomain">skuroi.com</p>
-          <h1 data-i18n="heading">SKU Profit and ROI Calculator</h1>
+          <h1 data-i18n="heading">SKU 利润和 ROI 计算器</h1>
         </div>
       </div>
       <div class="topbar-actions">
         <label class="language-control">
-          <span class="sr-only" data-i18n="languageLabel">Language</span>
-          <select id="languageSelect" aria-label="Language" data-i18n-aria-label="languageLabel">
+          <span class="sr-only" data-i18n="languageLabel">语言</span>
+          <select id="languageSelect" aria-label="语言" data-i18n-aria-label="languageLabel">
             <option value="en">English</option>
             <option value="zh-cn">简体中文</option>
             <option value="zh-tw">繁體中文</option>
@@ -109,9 +109,9 @@
         </label>
         <span id="saveStatus" class="save-status" aria-live="polite">
           <span class="status-dot" aria-hidden="true"></span>
-          <span class="status-text" data-i18n="savedLocally">Saved locally</span>
+          <span class="status-text" data-i18n="savedLocally">已本地保存</span>
         </span>
-        <button id="shareConfig" class="button button-secondary" type="button" data-i18n="share">Share</button>
+        <button id="shareConfig" class="button button-secondary" type="button" data-i18n="share">分享</button>
         <div class="export-wrapper">
           <button
             id="exportData"
@@ -120,68 +120,68 @@
             aria-haspopup="menu"
             aria-expanded="false"
             data-i18n="export"
-          >Export</button>
+          >导出</button>
           <div id="exportMenu" class="export-menu" role="menu" hidden>
             <button id="exportPdf" type="button" role="menuitem" data-i18n="exportPdf">PDF</button>
             <button id="exportCsv" type="button" role="menuitem" data-i18n="exportCsv">Excel CSV</button>
           </div>
         </div>
-        <button id="clearSaved" class="button button-ghost" type="button" data-i18n="clear">Clear</button>
-        <button id="resetForm" class="button" type="button" data-i18n="reset">Reset</button>
+        <button id="clearSaved" class="button button-ghost" type="button" data-i18n="clear">清除</button>
+        <button id="resetForm" class="button" type="button" data-i18n="reset">重置</button>
       </div>
     </header>
 
     <main class="app-shell">
       <section class="input-panel" aria-labelledby="input-heading">
         <div class="section-title">
-          <h2 id="input-heading" data-i18n="inputs">Inputs</h2>
-          <p data-i18n="inputsIntro">Your inputs are remembered in this browser and can still be shared through the URL.</p>
+          <h2 id="input-heading" data-i18n="inputs">输入参数</h2>
+          <p data-i18n="inputsIntro">你的参数会保存在当前浏览器，也可以通过 URL 分享。</p>
         </div>
 
         <form id="calculatorForm" class="form-stack">
           <fieldset>
-            <legend data-i18n="productEconomics">Product economics</legend>
+            <legend data-i18n="productEconomics">商品经济模型</legend>
             <div class="control-grid">
               <label>
-                <span data-i18n="sellingPrice">Selling price</span>
+                <span data-i18n="sellingPrice">售价</span>
                 <input id="sellingPrice" type="number" min="0" step="0.01" value="39.99">
               </label>
               <label>
-                <span data-i18n="productCost">Product cost</span>
+                <span data-i18n="productCost">产品成本</span>
                 <input id="productCost" type="number" min="0" step="0.01" value="12">
               </label>
               <label>
-                <span data-i18n="inboundShipping">Inbound shipping</span>
+                <span data-i18n="inboundShipping">头程/到岸运费</span>
                 <input id="inboundShipping" type="number" min="0" step="0.01" value="3.50">
               </label>
               <label>
-                <span data-i18n="customerShipping">Customer shipping charged</span>
+                <span data-i18n="customerShipping">向客户收取的运费</span>
                 <input id="customerShipping" type="number" min="0" step="0.01" value="0">
               </label>
               <label>
-                <span data-i18n="sellerShipping">Seller shipping cost</span>
+                <span data-i18n="sellerShipping">卖家承担运费</span>
                 <input id="sellerShipping" type="number" min="0" step="0.01" value="4">
               </label>
               <label>
-                <span data-i18n="returnRate">Return rate (%)</span>
+                <span data-i18n="returnRate">退货率 (%)</span>
                 <input id="returnRate" type="number" min="0" max="100" step="0.1" value="5">
               </label>
               <label>
-                <span data-i18n="returnLoss">Return loss per order</span>
+                <span data-i18n="returnLoss">每单退货损耗</span>
                 <input id="returnLoss" type="number" min="0" step="0.01" value="8">
               </label>
               <label>
-                <span data-i18n="otherCost">Other cost</span>
+                <span data-i18n="otherCost">其他成本</span>
                 <input id="otherCosts" type="number" min="0" step="0.01" value="0">
               </label>
             </div>
           </fieldset>
 
           <fieldset>
-            <legend data-i18n="shopifyUs">Shopify US</legend>
+            <legend data-i18n="shopifyUs">Shopify 美国</legend>
             <div class="control-grid">
               <label>
-                <span data-i18n="plan">Plan</span>
+                <span data-i18n="plan">套餐</span>
                 <select id="shopifyPlan">
                   <option value="basic" data-i18n="basic">Basic</option>
                   <option value="grow" data-i18n="grow">Grow</option>
@@ -189,85 +189,85 @@
                 </select>
               </label>
               <label>
-                <span data-i18n="paymentMethod">Payment method</span>
+                <span data-i18n="paymentMethod">支付方式</span>
                 <select id="shopifyPayment">
-                  <option value="standardCard" data-i18n="standardCard">Standard card</option>
-                  <option value="premiumCard" data-i18n="premiumCard">Premium card</option>
-                  <option value="internationalCard" data-i18n="internationalCard">International card</option>
-                  <option value="thirdParty" data-i18n="thirdPartyGateway">Third-party gateway</option>
+                  <option value="standardCard" data-i18n="standardCard">标准银行卡</option>
+                  <option value="premiumCard" data-i18n="premiumCard">高费率银行卡</option>
+                  <option value="internationalCard" data-i18n="internationalCard">国际卡</option>
+                  <option value="thirdParty" data-i18n="thirdPartyGateway">第三方支付网关</option>
                 </select>
               </label>
               <label>
-                <span data-i18n="cacAdCost">CAC / ad cost</span>
+                <span data-i18n="cacAdCost">CAC / 广告成本</span>
                 <input id="shopifyCac" type="number" min="0" step="0.01" value="8">
               </label>
               <label>
-                <span data-i18n="appCostPerOrder">App cost per order</span>
+                <span data-i18n="appCostPerOrder">每单应用成本</span>
                 <input id="shopifyAppCost" type="number" min="0" step="0.01" value="0">
               </label>
             </div>
           </fieldset>
 
           <fieldset>
-            <legend data-i18n="tiktokShopUs">TikTok Shop US</legend>
+            <legend data-i18n="tiktokShopUs">TikTok Shop 美国</legend>
             <div class="control-grid">
               <label>
-                <span data-i18n="referralFeePct">Referral fee (%)</span>
+                <span data-i18n="referralFeePct">平台佣金 (%)</span>
                 <input id="tiktokReferralRate" type="number" min="0" max="100" step="0.1" value="6">
               </label>
               <label>
-                <span data-i18n="affiliateCommissionPct">Affiliate commission (%)</span>
+                <span data-i18n="affiliateCommissionPct">达人佣金 (%)</span>
                 <input id="tiktokAffiliateRate" type="number" min="0" max="80" step="0.5" value="10">
               </label>
               <label>
-                <span data-i18n="adsCost">Ads / GMV Max cost</span>
+                <span data-i18n="adsCost">广告 / GMV Max 成本</span>
                 <input id="tiktokAdsCost" type="number" min="0" step="0.01" value="6">
               </label>
               <label>
-                <span data-i18n="processingFeePct">Processing fee (%)</span>
+                <span data-i18n="processingFeePct">支付处理费 (%)</span>
                 <input id="tiktokProcessingRate" type="number" min="0" max="100" step="0.1" value="0">
               </label>
               <label>
-                <span data-i18n="processingFixedFee">Processing fixed fee</span>
+                <span data-i18n="processingFixedFee">固定处理费</span>
                 <input id="tiktokProcessingFixed" type="number" min="0" step="0.01" value="0">
               </label>
               <label class="checkbox-control">
                 <input id="tiktokProcessingEnabled" type="checkbox">
-                <span data-i18n="countProcessing">Count processing fee separately</span>
+                <span data-i18n="countProcessing">单独计入处理费</span>
               </label>
             </div>
           </fieldset>
 
           <fieldset>
-            <legend data-i18n="amazonFbaLite">Amazon FBA US Lite</legend>
+            <legend data-i18n="amazonFbaLite">Amazon FBA 美国简版</legend>
             <div class="control-grid">
               <label>
-                <span data-i18n="category">Category</span>
+                <span data-i18n="category">类目</span>
                 <select id="amazonCategory">
-                  <option value="electronics" data-i18n="electronics">Electronics</option>
-                  <option value="home_kitchen" data-i18n="homeKitchen">Home &amp; Kitchen</option>
-                  <option value="apparel_default" data-i18n="apparel">Apparel</option>
-                  <option value="manual" data-i18n="manualReferral">Manual referral fee</option>
+                  <option value="electronics" data-i18n="electronics">电子产品</option>
+                  <option value="home_kitchen" data-i18n="homeKitchen">家居厨房</option>
+                  <option value="apparel_default" data-i18n="apparel">服装</option>
+                  <option value="manual" data-i18n="manualReferral">手动佣金</option>
                 </select>
               </label>
               <label>
-                <span data-i18n="manualReferralPct">Manual referral fee (%)</span>
+                <span data-i18n="manualReferralPct">手动佣金 (%)</span>
                 <input id="amazonReferralRate" type="number" min="0" max="100" step="0.1" value="15">
               </label>
               <label>
-                <span data-i18n="fbaFee">FBA fulfillment fee</span>
+                <span data-i18n="fbaFee">FBA 配送费</span>
                 <input id="amazonFbaFee" type="number" min="0" step="0.01" value="4.15">
               </label>
               <label>
-                <span data-i18n="storageFee">Storage fee per unit</span>
+                <span data-i18n="storageFee">单件仓储费</span>
                 <input id="amazonStorageFee" type="number" min="0" step="0.01" value="0.20">
               </label>
               <label>
-                <span data-i18n="ppcCost">PPC cost per order</span>
+                <span data-i18n="ppcCost">每单 PPC 成本</span>
                 <input id="amazonPpcCost" type="number" min="0" step="0.01" value="5">
               </label>
               <label>
-                <span data-i18n="otherAmazonCost">Other Amazon cost</span>
+                <span data-i18n="otherAmazonCost">其他 Amazon 成本</span>
                 <input id="amazonOtherCosts" type="number" min="0" step="0.01" value="0">
               </label>
             </div>
@@ -278,16 +278,16 @@
       <section class="results-panel" aria-labelledby="results-heading">
         <div class="summary-band">
           <div>
-            <p class="eyebrow" data-i18n="bestEstimate">Best estimate</p>
+            <p class="eyebrow" data-i18n="bestEstimate">最佳估算</p>
             <h2 id="results-heading"><span id="bestPlatform">Shopify</span></h2>
           </div>
           <div class="summary-metrics">
             <div>
-              <span data-i18n="netProfit">Net profit</span>
+              <span data-i18n="netProfit">净利润</span>
               <strong id="bestProfit">$0.00</strong>
             </div>
             <div>
-              <span data-i18n="margin">Margin</span>
+              <span data-i18n="margin">利润率</span>
               <strong id="bestMargin">0%</strong>
             </div>
           </div>
@@ -296,14 +296,14 @@
         <div id="platformResults" class="platform-grid" aria-live="polite"></div>
 
         <section class="method-panel" aria-labelledby="method-heading">
-          <h2 id="method-heading" data-i18n="assumptions">Assumptions</h2>
+          <h2 id="method-heading" data-i18n="assumptions">假设条件</h2>
           <div class="method-grid">
             <div>
-              <h3 data-i18n="transparentDefaults">Transparent defaults</h3>
-              <p data-i18n="assumptionsBody">Every default fee can be overridden. Use platform dashboards for final accounting, especially Amazon FBA and TikTok Shop seller fees.</p>
+              <h3 data-i18n="transparentDefaults">透明默认值</h3>
+              <p data-i18n="assumptionsBody">所有默认费用都可以覆盖。最终核算请以平台后台为准，尤其是 Amazon FBA 和 TikTok Shop 卖家费用。</p>
             </div>
             <div>
-              <h3 data-i18n="lastVerified">Last verified</h3>
+              <h3 data-i18n="lastVerified">最后核验</h3>
               <ul id="sourceList" class="source-list"></ul>
             </div>
           </div>
@@ -311,22 +311,22 @@
 
         <section class="seo-panel" aria-labelledby="seo-heading">
           <div>
-            <p class="eyebrow" data-i18n="skuEconomics">SKU economics</p>
-            <h2 id="seo-heading" data-i18n="seoHeading">Estimate platform profit before you launch a product</h2>
-            <p data-i18n="seoBody">SkuROI helps sellers compare Shopify, TikTok Shop, and Amazon FBA Lite with one consistent product scenario. Use it to test pricing, landed cost, ad spend, referral fees, affiliate commissions, fulfillment fees, and return loss before committing to a SKU.</p>
+            <p class="eyebrow" data-i18n="skuEconomics">SKU 经济模型</p>
+            <h2 id="seo-heading" data-i18n="seoHeading">在上架产品前估算各平台利润</h2>
+            <p data-i18n="seoBody">SkuROI 帮助卖家用同一组商品参数比较 Shopify、TikTok Shop 和 Amazon FBA Lite。你可以在投入 SKU 前测试定价、到岸成本、广告花费、平台佣金、达人佣金、履约费和退货损耗。</p>
           </div>
           <div class="faq-grid">
             <article>
-              <h3 data-i18n="faqUseTitle">What should I use it for?</h3>
-              <p data-i18n="faqUseBody">Fast product screening, offer testing, CAC planning, and platform comparison.</p>
+              <h3 data-i18n="faqUseTitle">这个工具适合做什么？</h3>
+              <p data-i18n="faqUseBody">快速筛选产品、测试报价、规划 CAC，并比较不同平台利润。</p>
             </article>
             <article>
-              <h3 data-i18n="faqFeesTitle">Are the fees exact?</h3>
-              <p data-i18n="faqFeesBody">No. Defaults are editable estimates. Always verify final fees in platform dashboards.</p>
+              <h3 data-i18n="faqFeesTitle">费用是否完全准确？</h3>
+              <p data-i18n="faqFeesBody">不是。默认值是可编辑估算值。最终费用应始终以平台后台为准。</p>
             </article>
             <article>
-              <h3 data-i18n="faqSavedTitle">Where are my inputs saved?</h3>
-              <p data-i18n="faqSavedBody">Only in this browser through local storage. Use Clear saved to remove them.</p>
+              <h3 data-i18n="faqSavedTitle">我的输入保存在哪里？</h3>
+              <p data-i18n="faqSavedBody">只保存在当前浏览器本地。点击清除可删除保存数据。</p>
             </article>
           </div>
         </section>
@@ -334,7 +334,7 @@
     </main>
 
     <footer class="footer">
-      <p data-i18n="disclaimer">Disclaimer: SkuROI provides estimates for planning only. Actual payouts, fees, tax treatment, refunds, adjustments, and promotions may differ in your platform account.</p>
+      <p data-i18n="disclaimer">免责声明：SkuROI 仅提供规划估算。实际回款、费用、税务、促销、退款和账号调整可能与估算不同。</p>
     </footer>
 
     <script src="/src/i18n.js" defer></script>

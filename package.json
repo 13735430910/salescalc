@@ -4,6 +4,7 @@
   "private": true,
   "description": "Static SKU profit and ROI calculator for Shopify, TikTok Shop, and Amazon FBA Lite.",
   "scripts": {
+    "build:locales": "node scripts/build-locales.js",
     "test": "node --test tests/*.test.js",
     "serve": "python3 -m http.server 8000"
   },

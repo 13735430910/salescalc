@@ -1,15 +1,15 @@
 <!doctype html>
-<html lang="en" data-locale="en">
+<html lang="ko" data-locale="ko">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SkuROI - SKU Profit and ROI Calculator</title>
+    <title>SkuROI - SKU 수익 및 ROI 계산기</title>
     <meta
       name="description"
-      content="Compare SKU-level profit, margin, ROI, break-even price, and fee assumptions for Shopify, TikTok Shop, and Amazon FBA Lite."
+      content="Shopify, TikTok Shop, Amazon FBA Lite의 SKU별 순이익, 마진, ROI, 손익분기 가격과 수수료 가정을 비교합니다."
     >
     <meta name="robots" content="index,follow">
-    <link rel="canonical" href="https://skuroi.com/">
+    <link rel="canonical" href="https://skuroi.com/ko/">
     <link rel="alternate" hreflang="x-default" href="https://skuroi.com/">
     <link rel="alternate" hreflang="en" href="https://skuroi.com/">
     <link rel="alternate" hreflang="zh-CN" href="https://skuroi.com/zh-cn/">
@@ -20,18 +20,18 @@
     <link rel="alternate" hreflang="fr" href="https://skuroi.com/fr/">
     <link rel="alternate" hreflang="de" href="https://skuroi.com/de/">
     <link rel="alternate" hreflang="it" href="https://skuroi.com/it/">
-    <meta property="og:title" content="SkuROI - SKU Profit and ROI Calculator">
+    <meta property="og:title" content="SkuROI - SKU 수익 및 ROI 계산기">
     <meta
       property="og:description"
-      content="Compare SKU-level profit, margin, ROI, break-even price, and fee assumptions for Shopify, TikTok Shop, and Amazon FBA Lite."
+      content="Shopify, TikTok Shop, Amazon FBA Lite의 SKU별 순이익, 마진, ROI, 손익분기 가격과 수수료 가정을 비교합니다."
     >
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://skuroi.com/">
+    <meta property="og:url" content="https://skuroi.com/ko/">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="SkuROI - SKU Profit and ROI Calculator">
+    <meta name="twitter:title" content="SkuROI - SKU 수익 및 ROI 계산기">
     <meta
       name="twitter:description"
-      content="Estimate net profit, margin, ROI, and break-even price across Shopify, TikTok Shop, and Amazon FBA Lite."
+      content="Shopify, TikTok Shop, Amazon FBA Lite의 순이익, 마진, ROI와 손익분기 가격을 추정합니다."
     >
     <meta name="theme-color" content="#0b1220">
     <link rel="stylesheet" href="/styles.css">
@@ -39,8 +39,8 @@
       {
               "@context": "https://schema.org",
               "@type": "WebApplication",
-              "name": "SkuROI SKU Profit and ROI Calculator",
-              "url": "https://skuroi.com/",
+              "name": "SkuROI SKU 수익 및 ROI 계산기",
+              "url": "https://skuroi.com/ko/",
               "applicationCategory": "BusinessApplication",
               "operatingSystem": "Any",
               "offers": {
@@ -57,26 +57,26 @@
               "mainEntity": [
                       {
                               "@type": "Question",
-                              "name": "What does SkuROI calculate?",
+                              "name": "SkuROI는 무엇을 계산하나요?",
                               "acceptedAnswer": {
                                       "@type": "Answer",
-                                      "text": "SkuROI estimates SKU-level net profit, profit margin, ROI, break-even price, and maximum allowable ad cost across Shopify, TikTok Shop, and Amazon FBA Lite."
+                                      "text": "SkuROI는 Shopify, TikTok Shop, Amazon FBA Lite의 SKU별 순이익, 마진, ROI, 손익분기 가격과 최대 허용 광고비를 추정합니다."
                               }
                       },
                       {
                               "@type": "Question",
-                              "name": "Are the fees exact?",
+                              "name": "수수료가 정확한가요?",
                               "acceptedAnswer": {
                                       "@type": "Answer",
-                                      "text": "No. Defaults are editable estimates. Always verify final fees in platform dashboards."
+                                      "text": "완전한 값은 아닙니다. 기본값은 수정 가능한 추정치이며 최종 수수료는 플랫폼에서 확인해야 합니다."
                               }
                       },
                       {
                               "@type": "Question",
-                              "name": "Where are my inputs saved?",
+                              "name": "입력값은 어디에 저장되나요?",
                               "acceptedAnswer": {
                                       "@type": "Answer",
-                                      "text": "Only in this browser through local storage. Use Clear saved to remove them."
+                                      "text": "이 브라우저의 로컬 저장소에만 저장됩니다. Clear로 삭제할 수 있습니다."
                               }
                       }
               ]
@@ -89,13 +89,13 @@
         <span class="brand-mark" aria-hidden="true">SR</span>
         <div>
           <p class="eyebrow" data-i18n="brandDomain">skuroi.com</p>
-          <h1 data-i18n="heading">SKU Profit and ROI Calculator</h1>
+          <h1 data-i18n="heading">SKU 수익 및 ROI 계산기</h1>
         </div>
       </div>
       <div class="topbar-actions">
         <label class="language-control">
-          <span class="sr-only" data-i18n="languageLabel">Language</span>
-          <select id="languageSelect" aria-label="Language" data-i18n-aria-label="languageLabel">
+          <span class="sr-only" data-i18n="languageLabel">언어</span>
+          <select id="languageSelect" aria-label="언어" data-i18n-aria-label="languageLabel">
             <option value="en">English</option>
             <option value="zh-cn">简体中文</option>
             <option value="zh-tw">繁體中文</option>
@@ -109,9 +109,9 @@
         </label>
         <span id="saveStatus" class="save-status" aria-live="polite">
           <span class="status-dot" aria-hidden="true"></span>
-          <span class="status-text" data-i18n="savedLocally">Saved locally</span>
+          <span class="status-text" data-i18n="savedLocally">로컬 저장됨</span>
         </span>
-        <button id="shareConfig" class="button button-secondary" type="button" data-i18n="share">Share</button>
+        <button id="shareConfig" class="button button-secondary" type="button" data-i18n="share">공유</button>
         <div class="export-wrapper">
           <button
             id="exportData"
@@ -120,68 +120,68 @@
             aria-haspopup="menu"
             aria-expanded="false"
             data-i18n="export"
-          >Export</button>
+          >내보내기</button>
           <div id="exportMenu" class="export-menu" role="menu" hidden>
             <button id="exportPdf" type="button" role="menuitem" data-i18n="exportPdf">PDF</button>
             <button id="exportCsv" type="button" role="menuitem" data-i18n="exportCsv">Excel CSV</button>
           </div>
         </div>
-        <button id="clearSaved" class="button button-ghost" type="button" data-i18n="clear">Clear</button>
-        <button id="resetForm" class="button" type="button" data-i18n="reset">Reset</button>
+        <button id="clearSaved" class="button button-ghost" type="button" data-i18n="clear">지우기</button>
+        <button id="resetForm" class="button" type="button" data-i18n="reset">초기화</button>
       </div>
     </header>
 
     <main class="app-shell">
       <section class="input-panel" aria-labelledby="input-heading">
         <div class="section-title">
-          <h2 id="input-heading" data-i18n="inputs">Inputs</h2>
-          <p data-i18n="inputsIntro">Your inputs are remembered in this browser and can still be shared through the URL.</p>
+          <h2 id="input-heading" data-i18n="inputs">입력값</h2>
+          <p data-i18n="inputsIntro">입력값은 이 브라우저에 저장되며 URL로 공유할 수 있습니다.</p>
         </div>
 
         <form id="calculatorForm" class="form-stack">
           <fieldset>
-            <legend data-i18n="productEconomics">Product economics</legend>
+            <legend data-i18n="productEconomics">상품 수익 구조</legend>
             <div class="control-grid">
               <label>
-                <span data-i18n="sellingPrice">Selling price</span>
+                <span data-i18n="sellingPrice">판매가</span>
                 <input id="sellingPrice" type="number" min="0" step="0.01" value="39.99">
               </label>
               <label>
-                <span data-i18n="productCost">Product cost</span>
+                <span data-i18n="productCost">상품 원가</span>
                 <input id="productCost" type="number" min="0" step="0.01" value="12">
               </label>
               <label>
-                <span data-i18n="inboundShipping">Inbound shipping</span>
+                <span data-i18n="inboundShipping">입고/조달 배송비</span>
                 <input id="inboundShipping" type="number" min="0" step="0.01" value="3.50">
               </label>
               <label>
-                <span data-i18n="customerShipping">Customer shipping charged</span>
+                <span data-i18n="customerShipping">고객 청구 배송비</span>
                 <input id="customerShipping" type="number" min="0" step="0.01" value="0">
               </label>
               <label>
-                <span data-i18n="sellerShipping">Seller shipping cost</span>
+                <span data-i18n="sellerShipping">판매자 부담 배송비</span>
                 <input id="sellerShipping" type="number" min="0" step="0.01" value="4">
               </label>
               <label>
-                <span data-i18n="returnRate">Return rate (%)</span>
+                <span data-i18n="returnRate">반품률 (%)</span>
                 <input id="returnRate" type="number" min="0" max="100" step="0.1" value="5">
               </label>
               <label>
-                <span data-i18n="returnLoss">Return loss per order</span>
+                <span data-i18n="returnLoss">반품 1건당 손실</span>
                 <input id="returnLoss" type="number" min="0" step="0.01" value="8">
               </label>
               <label>
-                <span data-i18n="otherCost">Other cost</span>
+                <span data-i18n="otherCost">기타 비용</span>
                 <input id="otherCosts" type="number" min="0" step="0.01" value="0">
               </label>
             </div>
           </fieldset>
 
           <fieldset>
-            <legend data-i18n="shopifyUs">Shopify US</legend>
+            <legend data-i18n="shopifyUs">Shopify 미국</legend>
             <div class="control-grid">
               <label>
-                <span data-i18n="plan">Plan</span>
+                <span data-i18n="plan">플랜</span>
                 <select id="shopifyPlan">
                   <option value="basic" data-i18n="basic">Basic</option>
                   <option value="grow" data-i18n="grow">Grow</option>
@@ -189,85 +189,85 @@
                 </select>
               </label>
               <label>
-                <span data-i18n="paymentMethod">Payment method</span>
+                <span data-i18n="paymentMethod">결제 방식</span>
                 <select id="shopifyPayment">
-                  <option value="standardCard" data-i18n="standardCard">Standard card</option>
-                  <option value="premiumCard" data-i18n="premiumCard">Premium card</option>
-                  <option value="internationalCard" data-i18n="internationalCard">International card</option>
-                  <option value="thirdParty" data-i18n="thirdPartyGateway">Third-party gateway</option>
+                  <option value="standardCard" data-i18n="standardCard">일반 카드</option>
+                  <option value="premiumCard" data-i18n="premiumCard">프리미엄 카드</option>
+                  <option value="internationalCard" data-i18n="internationalCard">해외 카드</option>
+                  <option value="thirdParty" data-i18n="thirdPartyGateway">외부 결제 게이트웨이</option>
                 </select>
               </label>
               <label>
-                <span data-i18n="cacAdCost">CAC / ad cost</span>
+                <span data-i18n="cacAdCost">CAC / 광고비</span>
                 <input id="shopifyCac" type="number" min="0" step="0.01" value="8">
               </label>
               <label>
-                <span data-i18n="appCostPerOrder">App cost per order</span>
+                <span data-i18n="appCostPerOrder">주문당 앱 비용</span>
                 <input id="shopifyAppCost" type="number" min="0" step="0.01" value="0">
               </label>
             </div>
           </fieldset>
 
           <fieldset>
-            <legend data-i18n="tiktokShopUs">TikTok Shop US</legend>
+            <legend data-i18n="tiktokShopUs">TikTok Shop 미국</legend>
             <div class="control-grid">
               <label>
-                <span data-i18n="referralFeePct">Referral fee (%)</span>
+                <span data-i18n="referralFeePct">플랫폼 수수료 (%)</span>
                 <input id="tiktokReferralRate" type="number" min="0" max="100" step="0.1" value="6">
               </label>
               <label>
-                <span data-i18n="affiliateCommissionPct">Affiliate commission (%)</span>
+                <span data-i18n="affiliateCommissionPct">제휴 커미션 (%)</span>
                 <input id="tiktokAffiliateRate" type="number" min="0" max="80" step="0.5" value="10">
               </label>
               <label>
-                <span data-i18n="adsCost">Ads / GMV Max cost</span>
+                <span data-i18n="adsCost">광고 / GMV Max 비용</span>
                 <input id="tiktokAdsCost" type="number" min="0" step="0.01" value="6">
               </label>
               <label>
-                <span data-i18n="processingFeePct">Processing fee (%)</span>
+                <span data-i18n="processingFeePct">결제 처리 수수료 (%)</span>
                 <input id="tiktokProcessingRate" type="number" min="0" max="100" step="0.1" value="0">
               </label>
               <label>
-                <span data-i18n="processingFixedFee">Processing fixed fee</span>
+                <span data-i18n="processingFixedFee">고정 처리 수수료</span>
                 <input id="tiktokProcessingFixed" type="number" min="0" step="0.01" value="0">
               </label>
               <label class="checkbox-control">
                 <input id="tiktokProcessingEnabled" type="checkbox">
-                <span data-i18n="countProcessing">Count processing fee separately</span>
+                <span data-i18n="countProcessing">처리 수수료 별도 계산</span>
               </label>
             </div>
           </fieldset>
 
           <fieldset>
-            <legend data-i18n="amazonFbaLite">Amazon FBA US Lite</legend>
+            <legend data-i18n="amazonFbaLite">Amazon FBA 미국 Lite</legend>
             <div class="control-grid">
               <label>
-                <span data-i18n="category">Category</span>
+                <span data-i18n="category">카테고리</span>
                 <select id="amazonCategory">
-                  <option value="electronics" data-i18n="electronics">Electronics</option>
-                  <option value="home_kitchen" data-i18n="homeKitchen">Home &amp; Kitchen</option>
-                  <option value="apparel_default" data-i18n="apparel">Apparel</option>
-                  <option value="manual" data-i18n="manualReferral">Manual referral fee</option>
+                  <option value="electronics" data-i18n="electronics">전자제품</option>
+                  <option value="home_kitchen" data-i18n="homeKitchen">홈 &amp; 키친</option>
+                  <option value="apparel_default" data-i18n="apparel">의류</option>
+                  <option value="manual" data-i18n="manualReferral">수동 수수료</option>
                 </select>
               </label>
               <label>
-                <span data-i18n="manualReferralPct">Manual referral fee (%)</span>
+                <span data-i18n="manualReferralPct">수동 수수료 (%)</span>
                 <input id="amazonReferralRate" type="number" min="0" max="100" step="0.1" value="15">
               </label>
               <label>
-                <span data-i18n="fbaFee">FBA fulfillment fee</span>
+                <span data-i18n="fbaFee">FBA 배송 수수료</span>
                 <input id="amazonFbaFee" type="number" min="0" step="0.01" value="4.15">
               </label>
               <label>
-                <span data-i18n="storageFee">Storage fee per unit</span>
+                <span data-i18n="storageFee">개당 보관료</span>
                 <input id="amazonStorageFee" type="number" min="0" step="0.01" value="0.20">
               </label>
               <label>
-                <span data-i18n="ppcCost">PPC cost per order</span>
+                <span data-i18n="ppcCost">주문당 PPC 비용</span>
                 <input id="amazonPpcCost" type="number" min="0" step="0.01" value="5">
               </label>
               <label>
-                <span data-i18n="otherAmazonCost">Other Amazon cost</span>
+                <span data-i18n="otherAmazonCost">기타 Amazon 비용</span>
                 <input id="amazonOtherCosts" type="number" min="0" step="0.01" value="0">
               </label>
             </div>
@@ -278,16 +278,16 @@
       <section class="results-panel" aria-labelledby="results-heading">
         <div class="summary-band">
           <div>
-            <p class="eyebrow" data-i18n="bestEstimate">Best estimate</p>
+            <p class="eyebrow" data-i18n="bestEstimate">최적 추정</p>
             <h2 id="results-heading"><span id="bestPlatform">Shopify</span></h2>
           </div>
           <div class="summary-metrics">
             <div>
-              <span data-i18n="netProfit">Net profit</span>
+              <span data-i18n="netProfit">순이익</span>
               <strong id="bestProfit">$0.00</strong>
             </div>
             <div>
-              <span data-i18n="margin">Margin</span>
+              <span data-i18n="margin">마진</span>
               <strong id="bestMargin">0%</strong>
             </div>
           </div>
@@ -296,14 +296,14 @@
         <div id="platformResults" class="platform-grid" aria-live="polite"></div>
 
         <section class="method-panel" aria-labelledby="method-heading">
-          <h2 id="method-heading" data-i18n="assumptions">Assumptions</h2>
+          <h2 id="method-heading" data-i18n="assumptions">가정</h2>
           <div class="method-grid">
             <div>
-              <h3 data-i18n="transparentDefaults">Transparent defaults</h3>
-              <p data-i18n="assumptionsBody">Every default fee can be overridden. Use platform dashboards for final accounting, especially Amazon FBA and TikTok Shop seller fees.</p>
+              <h3 data-i18n="transparentDefaults">투명한 기본값</h3>
+              <p data-i18n="assumptionsBody">모든 기본 수수료는 수정할 수 있습니다. 최종 정산은 각 플랫폼 관리자 화면에서 확인하세요.</p>
             </div>
             <div>
-              <h3 data-i18n="lastVerified">Last verified</h3>
+              <h3 data-i18n="lastVerified">최종 확인</h3>
               <ul id="sourceList" class="source-list"></ul>
             </div>
           </div>
@@ -311,22 +311,22 @@
 
         <section class="seo-panel" aria-labelledby="seo-heading">
           <div>
-            <p class="eyebrow" data-i18n="skuEconomics">SKU economics</p>
-            <h2 id="seo-heading" data-i18n="seoHeading">Estimate platform profit before you launch a product</h2>
-            <p data-i18n="seoBody">SkuROI helps sellers compare Shopify, TikTok Shop, and Amazon FBA Lite with one consistent product scenario. Use it to test pricing, landed cost, ad spend, referral fees, affiliate commissions, fulfillment fees, and return loss before committing to a SKU.</p>
+            <p class="eyebrow" data-i18n="skuEconomics">SKU 경제성</p>
+            <h2 id="seo-heading" data-i18n="seoHeading">상품 출시 전에 플랫폼별 수익을 추정하세요</h2>
+            <p data-i18n="seoBody">SkuROI는 하나의 상품 시나리오로 Shopify, TikTok Shop, Amazon FBA Lite를 비교합니다. SKU를 투입하기 전에 가격, 원가, 광고비, 수수료, 커미션, 배송비, 반품 손실을 테스트할 수 있습니다.</p>
           </div>
           <div class="faq-grid">
             <article>
-              <h3 data-i18n="faqUseTitle">What should I use it for?</h3>
-              <p data-i18n="faqUseBody">Fast product screening, offer testing, CAC planning, and platform comparison.</p>
+              <h3 data-i18n="faqUseTitle">무엇에 사용하나요?</h3>
+              <p data-i18n="faqUseBody">상품 선별, 가격 테스트, CAC 계획, 플랫폼 비교에 사용합니다.</p>
             </article>
             <article>
-              <h3 data-i18n="faqFeesTitle">Are the fees exact?</h3>
-              <p data-i18n="faqFeesBody">No. Defaults are editable estimates. Always verify final fees in platform dashboards.</p>
+              <h3 data-i18n="faqFeesTitle">수수료가 정확한가요?</h3>
+              <p data-i18n="faqFeesBody">완전한 값은 아닙니다. 기본값은 수정 가능한 추정치이며 최종 수수료는 플랫폼에서 확인해야 합니다.</p>
             </article>
             <article>
-              <h3 data-i18n="faqSavedTitle">Where are my inputs saved?</h3>
-              <p data-i18n="faqSavedBody">Only in this browser through local storage. Use Clear saved to remove them.</p>
+              <h3 data-i18n="faqSavedTitle">입력값은 어디에 저장되나요?</h3>
+              <p data-i18n="faqSavedBody">이 브라우저의 로컬 저장소에만 저장됩니다. Clear로 삭제할 수 있습니다.</p>
             </article>
           </div>
         </section>
@@ -334,7 +334,7 @@
     </main>
 
     <footer class="footer">
-      <p data-i18n="disclaimer">Disclaimer: SkuROI provides estimates for planning only. Actual payouts, fees, tax treatment, refunds, adjustments, and promotions may differ in your platform account.</p>
+      <p data-i18n="disclaimer">면책 고지: SkuROI는 계획용 추정치만 제공합니다. 실제 정산, 수수료, 세금, 환불, 조정은 다를 수 있습니다.</p>
     </footer>
 
     <script src="/src/i18n.js" defer></script>

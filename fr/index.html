@@ -1,15 +1,15 @@
 <!doctype html>
-<html lang="en" data-locale="en">
+<html lang="fr" data-locale="fr">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SkuROI - SKU Profit and ROI Calculator</title>
+    <title>SkuROI - Calculateur de profit et ROI par SKU</title>
     <meta
       name="description"
-      content="Compare SKU-level profit, margin, ROI, break-even price, and fee assumptions for Shopify, TikTok Shop, and Amazon FBA Lite."
+      content="Comparez le profit net, la marge, le ROI, le seuil de rentabilité et les frais pour Shopify, TikTok Shop et Amazon FBA Lite."
     >
     <meta name="robots" content="index,follow">
-    <link rel="canonical" href="https://skuroi.com/">
+    <link rel="canonical" href="https://skuroi.com/fr/">
     <link rel="alternate" hreflang="x-default" href="https://skuroi.com/">
     <link rel="alternate" hreflang="en" href="https://skuroi.com/">
     <link rel="alternate" hreflang="zh-CN" href="https://skuroi.com/zh-cn/">
@@ -20,18 +20,18 @@
     <link rel="alternate" hreflang="fr" href="https://skuroi.com/fr/">
     <link rel="alternate" hreflang="de" href="https://skuroi.com/de/">
     <link rel="alternate" hreflang="it" href="https://skuroi.com/it/">
-    <meta property="og:title" content="SkuROI - SKU Profit and ROI Calculator">
+    <meta property="og:title" content="SkuROI - Calculateur de profit et ROI par SKU">
     <meta
       property="og:description"
-      content="Compare SKU-level profit, margin, ROI, break-even price, and fee assumptions for Shopify, TikTok Shop, and Amazon FBA Lite."
+      content="Comparez le profit net, la marge, le ROI, le seuil de rentabilité et les frais pour Shopify, TikTok Shop et Amazon FBA Lite."
     >
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://skuroi.com/">
+    <meta property="og:url" content="https://skuroi.com/fr/">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="SkuROI - SKU Profit and ROI Calculator">
+    <meta name="twitter:title" content="SkuROI - Calculateur de profit et ROI par SKU">
     <meta
       name="twitter:description"
-      content="Estimate net profit, margin, ROI, and break-even price across Shopify, TikTok Shop, and Amazon FBA Lite."
+      content="Estimez le profit net, la marge, le ROI et le seuil de rentabilité sur Shopify, TikTok Shop et Amazon FBA Lite."
     >
     <meta name="theme-color" content="#0b1220">
     <link rel="stylesheet" href="/styles.css">
@@ -39,8 +39,8 @@
       {
               "@context": "https://schema.org",
               "@type": "WebApplication",
-              "name": "SkuROI SKU Profit and ROI Calculator",
-              "url": "https://skuroi.com/",
+              "name": "Calculateur de profit et ROI par SKU SkuROI",
+              "url": "https://skuroi.com/fr/",
               "applicationCategory": "BusinessApplication",
               "operatingSystem": "Any",
               "offers": {
@@ -57,26 +57,26 @@
               "mainEntity": [
                       {
                               "@type": "Question",
-                              "name": "What does SkuROI calculate?",
+                              "name": "Que calcule SkuROI ?",
                               "acceptedAnswer": {
                                       "@type": "Answer",
-                                      "text": "SkuROI estimates SKU-level net profit, profit margin, ROI, break-even price, and maximum allowable ad cost across Shopify, TikTok Shop, and Amazon FBA Lite."
+                                      "text": "SkuROI estime le profit net, la marge, le ROI, le seuil de rentabilité et le coût publicitaire maximal par SKU sur Shopify, TikTok Shop et Amazon FBA Lite."
                               }
                       },
                       {
                               "@type": "Question",
-                              "name": "Are the fees exact?",
+                              "name": "Les frais sont-ils exacts ?",
                               "acceptedAnswer": {
                                       "@type": "Answer",
-                                      "text": "No. Defaults are editable estimates. Always verify final fees in platform dashboards."
+                                      "text": "Non. Ce sont des estimations modifiables. Vérifiez toujours les frais finaux dans chaque tableau de bord."
                               }
                       },
                       {
                               "@type": "Question",
-                              "name": "Where are my inputs saved?",
+                              "name": "Où mes données sont-elles enregistrées ?",
                               "acceptedAnswer": {
                                       "@type": "Answer",
-                                      "text": "Only in this browser through local storage. Use Clear saved to remove them."
+                                      "text": "Uniquement dans le stockage local de ce navigateur. Utilisez Effacer pour les supprimer."
                               }
                       }
               ]
@@ -89,13 +89,13 @@
         <span class="brand-mark" aria-hidden="true">SR</span>
         <div>
           <p class="eyebrow" data-i18n="brandDomain">skuroi.com</p>
-          <h1 data-i18n="heading">SKU Profit and ROI Calculator</h1>
+          <h1 data-i18n="heading">Calculateur de profit et ROI par SKU</h1>
         </div>
       </div>
       <div class="topbar-actions">
         <label class="language-control">
-          <span class="sr-only" data-i18n="languageLabel">Language</span>
-          <select id="languageSelect" aria-label="Language" data-i18n-aria-label="languageLabel">
+          <span class="sr-only" data-i18n="languageLabel">Langue</span>
+          <select id="languageSelect" aria-label="Langue" data-i18n-aria-label="languageLabel">
             <option value="en">English</option>
             <option value="zh-cn">简体中文</option>
             <option value="zh-tw">繁體中文</option>
@@ -109,9 +109,9 @@
         </label>
         <span id="saveStatus" class="save-status" aria-live="polite">
           <span class="status-dot" aria-hidden="true"></span>
-          <span class="status-text" data-i18n="savedLocally">Saved locally</span>
+          <span class="status-text" data-i18n="savedLocally">Enregistré localement</span>
         </span>
-        <button id="shareConfig" class="button button-secondary" type="button" data-i18n="share">Share</button>
+        <button id="shareConfig" class="button button-secondary" type="button" data-i18n="share">Partager</button>
         <div class="export-wrapper">
           <button
             id="exportData"
@@ -120,58 +120,58 @@
             aria-haspopup="menu"
             aria-expanded="false"
             data-i18n="export"
-          >Export</button>
+          >Exporter</button>
           <div id="exportMenu" class="export-menu" role="menu" hidden>
             <button id="exportPdf" type="button" role="menuitem" data-i18n="exportPdf">PDF</button>
             <button id="exportCsv" type="button" role="menuitem" data-i18n="exportCsv">Excel CSV</button>
           </div>
         </div>
-        <button id="clearSaved" class="button button-ghost" type="button" data-i18n="clear">Clear</button>
-        <button id="resetForm" class="button" type="button" data-i18n="reset">Reset</button>
+        <button id="clearSaved" class="button button-ghost" type="button" data-i18n="clear">Effacer</button>
+        <button id="resetForm" class="button" type="button" data-i18n="reset">Réinitialiser</button>
       </div>
     </header>
 
     <main class="app-shell">
       <section class="input-panel" aria-labelledby="input-heading">
         <div class="section-title">
-          <h2 id="input-heading" data-i18n="inputs">Inputs</h2>
-          <p data-i18n="inputsIntro">Your inputs are remembered in this browser and can still be shared through the URL.</p>
+          <h2 id="input-heading" data-i18n="inputs">Paramètres</h2>
+          <p data-i18n="inputsIntro">Vos paramètres sont mémorisés dans ce navigateur et peuvent aussi être partagés par URL.</p>
         </div>
 
         <form id="calculatorForm" class="form-stack">
           <fieldset>
-            <legend data-i18n="productEconomics">Product economics</legend>
+            <legend data-i18n="productEconomics">Économie du produit</legend>
             <div class="control-grid">
               <label>
-                <span data-i18n="sellingPrice">Selling price</span>
+                <span data-i18n="sellingPrice">Prix de vente</span>
                 <input id="sellingPrice" type="number" min="0" step="0.01" value="39.99">
               </label>
               <label>
-                <span data-i18n="productCost">Product cost</span>
+                <span data-i18n="productCost">Coût produit</span>
                 <input id="productCost" type="number" min="0" step="0.01" value="12">
               </label>
               <label>
-                <span data-i18n="inboundShipping">Inbound shipping</span>
+                <span data-i18n="inboundShipping">Transport entrant</span>
                 <input id="inboundShipping" type="number" min="0" step="0.01" value="3.50">
               </label>
               <label>
-                <span data-i18n="customerShipping">Customer shipping charged</span>
+                <span data-i18n="customerShipping">Livraison facturée au client</span>
                 <input id="customerShipping" type="number" min="0" step="0.01" value="0">
               </label>
               <label>
-                <span data-i18n="sellerShipping">Seller shipping cost</span>
+                <span data-i18n="sellerShipping">Coût de livraison vendeur</span>
                 <input id="sellerShipping" type="number" min="0" step="0.01" value="4">
               </label>
               <label>
-                <span data-i18n="returnRate">Return rate (%)</span>
+                <span data-i18n="returnRate">Taux de retour (%)</span>
                 <input id="returnRate" type="number" min="0" max="100" step="0.1" value="5">
               </label>
               <label>
-                <span data-i18n="returnLoss">Return loss per order</span>
+                <span data-i18n="returnLoss">Perte par retour</span>
                 <input id="returnLoss" type="number" min="0" step="0.01" value="8">
               </label>
               <label>
-                <span data-i18n="otherCost">Other cost</span>
+                <span data-i18n="otherCost">Autre coût</span>
                 <input id="otherCosts" type="number" min="0" step="0.01" value="0">
               </label>
             </div>
@@ -181,7 +181,7 @@
             <legend data-i18n="shopifyUs">Shopify US</legend>
             <div class="control-grid">
               <label>
-                <span data-i18n="plan">Plan</span>
+                <span data-i18n="plan">Forfait</span>
                 <select id="shopifyPlan">
                   <option value="basic" data-i18n="basic">Basic</option>
                   <option value="grow" data-i18n="grow">Grow</option>
@@ -189,20 +189,20 @@
                 </select>
               </label>
               <label>
-                <span data-i18n="paymentMethod">Payment method</span>
+                <span data-i18n="paymentMethod">Moyen de paiement</span>
                 <select id="shopifyPayment">
-                  <option value="standardCard" data-i18n="standardCard">Standard card</option>
-                  <option value="premiumCard" data-i18n="premiumCard">Premium card</option>
-                  <option value="internationalCard" data-i18n="internationalCard">International card</option>
-                  <option value="thirdParty" data-i18n="thirdPartyGateway">Third-party gateway</option>
+                  <option value="standardCard" data-i18n="standardCard">Carte standard</option>
+                  <option value="premiumCard" data-i18n="premiumCard">Carte premium</option>
+                  <option value="internationalCard" data-i18n="internationalCard">Carte internationale</option>
+                  <option value="thirdParty" data-i18n="thirdPartyGateway">Passerelle tierce</option>
                 </select>
               </label>
               <label>
-                <span data-i18n="cacAdCost">CAC / ad cost</span>
+                <span data-i18n="cacAdCost">CAC / coût pub</span>
                 <input id="shopifyCac" type="number" min="0" step="0.01" value="8">
               </label>
               <label>
-                <span data-i18n="appCostPerOrder">App cost per order</span>
+                <span data-i18n="appCostPerOrder">Coût d&#39;app par commande</span>
                 <input id="shopifyAppCost" type="number" min="0" step="0.01" value="0">
               </label>
             </div>
@@ -212,28 +212,28 @@
             <legend data-i18n="tiktokShopUs">TikTok Shop US</legend>
             <div class="control-grid">
               <label>
-                <span data-i18n="referralFeePct">Referral fee (%)</span>
+                <span data-i18n="referralFeePct">Commission plateforme (%)</span>
                 <input id="tiktokReferralRate" type="number" min="0" max="100" step="0.1" value="6">
               </label>
               <label>
-                <span data-i18n="affiliateCommissionPct">Affiliate commission (%)</span>
+                <span data-i18n="affiliateCommissionPct">Commission affilié (%)</span>
                 <input id="tiktokAffiliateRate" type="number" min="0" max="80" step="0.5" value="10">
               </label>
               <label>
-                <span data-i18n="adsCost">Ads / GMV Max cost</span>
+                <span data-i18n="adsCost">Publicité / GMV Max</span>
                 <input id="tiktokAdsCost" type="number" min="0" step="0.01" value="6">
               </label>
               <label>
-                <span data-i18n="processingFeePct">Processing fee (%)</span>
+                <span data-i18n="processingFeePct">Frais de traitement (%)</span>
                 <input id="tiktokProcessingRate" type="number" min="0" max="100" step="0.1" value="0">
               </label>
               <label>
-                <span data-i18n="processingFixedFee">Processing fixed fee</span>
+                <span data-i18n="processingFixedFee">Frais fixes</span>
                 <input id="tiktokProcessingFixed" type="number" min="0" step="0.01" value="0">
               </label>
               <label class="checkbox-control">
                 <input id="tiktokProcessingEnabled" type="checkbox">
-                <span data-i18n="countProcessing">Count processing fee separately</span>
+                <span data-i18n="countProcessing">Compter les frais séparément</span>
               </label>
             </div>
           </fieldset>
@@ -242,32 +242,32 @@
             <legend data-i18n="amazonFbaLite">Amazon FBA US Lite</legend>
             <div class="control-grid">
               <label>
-                <span data-i18n="category">Category</span>
+                <span data-i18n="category">Catégorie</span>
                 <select id="amazonCategory">
-                  <option value="electronics" data-i18n="electronics">Electronics</option>
-                  <option value="home_kitchen" data-i18n="homeKitchen">Home &amp; Kitchen</option>
-                  <option value="apparel_default" data-i18n="apparel">Apparel</option>
-                  <option value="manual" data-i18n="manualReferral">Manual referral fee</option>
+                  <option value="electronics" data-i18n="electronics">Électronique</option>
+                  <option value="home_kitchen" data-i18n="homeKitchen">Maison et cuisine</option>
+                  <option value="apparel_default" data-i18n="apparel">Vêtements</option>
+                  <option value="manual" data-i18n="manualReferral">Commission manuelle</option>
                 </select>
               </label>
               <label>
-                <span data-i18n="manualReferralPct">Manual referral fee (%)</span>
+                <span data-i18n="manualReferralPct">Commission manuelle (%)</span>
                 <input id="amazonReferralRate" type="number" min="0" max="100" step="0.1" value="15">
               </label>
               <label>
-                <span data-i18n="fbaFee">FBA fulfillment fee</span>
+                <span data-i18n="fbaFee">Frais FBA</span>
                 <input id="amazonFbaFee" type="number" min="0" step="0.01" value="4.15">
               </label>
               <label>
-                <span data-i18n="storageFee">Storage fee per unit</span>
+                <span data-i18n="storageFee">Stockage par unité</span>
                 <input id="amazonStorageFee" type="number" min="0" step="0.01" value="0.20">
               </label>
               <label>
-                <span data-i18n="ppcCost">PPC cost per order</span>
+                <span data-i18n="ppcCost">PPC par commande</span>
                 <input id="amazonPpcCost" type="number" min="0" step="0.01" value="5">
               </label>
               <label>
-                <span data-i18n="otherAmazonCost">Other Amazon cost</span>
+                <span data-i18n="otherAmazonCost">Autres coûts Amazon</span>
                 <input id="amazonOtherCosts" type="number" min="0" step="0.01" value="0">
               </label>
             </div>
@@ -278,16 +278,16 @@
       <section class="results-panel" aria-labelledby="results-heading">
         <div class="summary-band">
           <div>
-            <p class="eyebrow" data-i18n="bestEstimate">Best estimate</p>
+            <p class="eyebrow" data-i18n="bestEstimate">Meilleure estimation</p>
             <h2 id="results-heading"><span id="bestPlatform">Shopify</span></h2>
           </div>
           <div class="summary-metrics">
             <div>
-              <span data-i18n="netProfit">Net profit</span>
+              <span data-i18n="netProfit">Profit net</span>
               <strong id="bestProfit">$0.00</strong>
             </div>
             <div>
-              <span data-i18n="margin">Margin</span>
+              <span data-i18n="margin">Marge</span>
               <strong id="bestMargin">0%</strong>
             </div>
           </div>
@@ -296,14 +296,14 @@
         <div id="platformResults" class="platform-grid" aria-live="polite"></div>
 
         <section class="method-panel" aria-labelledby="method-heading">
-          <h2 id="method-heading" data-i18n="assumptions">Assumptions</h2>
+          <h2 id="method-heading" data-i18n="assumptions">Hypothèses</h2>
           <div class="method-grid">
             <div>
-              <h3 data-i18n="transparentDefaults">Transparent defaults</h3>
-              <p data-i18n="assumptionsBody">Every default fee can be overridden. Use platform dashboards for final accounting, especially Amazon FBA and TikTok Shop seller fees.</p>
+              <h3 data-i18n="transparentDefaults">Valeurs par défaut transparentes</h3>
+              <p data-i18n="assumptionsBody">Tous les frais par défaut peuvent être modifiés. Vérifiez les montants finaux dans chaque plateforme.</p>
             </div>
             <div>
-              <h3 data-i18n="lastVerified">Last verified</h3>
+              <h3 data-i18n="lastVerified">Dernière vérification</h3>
               <ul id="sourceList" class="source-list"></ul>
             </div>
           </div>
@@ -311,22 +311,22 @@
 
         <section class="seo-panel" aria-labelledby="seo-heading">
           <div>
-            <p class="eyebrow" data-i18n="skuEconomics">SKU economics</p>
-            <h2 id="seo-heading" data-i18n="seoHeading">Estimate platform profit before you launch a product</h2>
-            <p data-i18n="seoBody">SkuROI helps sellers compare Shopify, TikTok Shop, and Amazon FBA Lite with one consistent product scenario. Use it to test pricing, landed cost, ad spend, referral fees, affiliate commissions, fulfillment fees, and return loss before committing to a SKU.</p>
+            <p class="eyebrow" data-i18n="skuEconomics">Économie SKU</p>
+            <h2 id="seo-heading" data-i18n="seoHeading">Estimez le profit avant de lancer un produit</h2>
+            <p data-i18n="seoBody">SkuROI compare Shopify, TikTok Shop et Amazon FBA Lite avec un scénario produit cohérent. Testez prix, coût rendu, publicité, commissions, exécution et retours avant de vous engager sur un SKU.</p>
           </div>
           <div class="faq-grid">
             <article>
-              <h3 data-i18n="faqUseTitle">What should I use it for?</h3>
-              <p data-i18n="faqUseBody">Fast product screening, offer testing, CAC planning, and platform comparison.</p>
+              <h3 data-i18n="faqUseTitle">À quoi sert cet outil ?</h3>
+              <p data-i18n="faqUseBody">À filtrer des produits, tester des offres, planifier le CAC et comparer les plateformes.</p>
             </article>
             <article>
-              <h3 data-i18n="faqFeesTitle">Are the fees exact?</h3>
-              <p data-i18n="faqFeesBody">No. Defaults are editable estimates. Always verify final fees in platform dashboards.</p>
+              <h3 data-i18n="faqFeesTitle">Les frais sont-ils exacts ?</h3>
+              <p data-i18n="faqFeesBody">Non. Ce sont des estimations modifiables. Vérifiez toujours les frais finaux dans chaque tableau de bord.</p>
             </article>
             <article>
-              <h3 data-i18n="faqSavedTitle">Where are my inputs saved?</h3>
-              <p data-i18n="faqSavedBody">Only in this browser through local storage. Use Clear saved to remove them.</p>
+              <h3 data-i18n="faqSavedTitle">Où mes données sont-elles enregistrées ?</h3>
+              <p data-i18n="faqSavedBody">Uniquement dans le stockage local de ce navigateur. Utilisez Effacer pour les supprimer.</p>
             </article>
           </div>
         </section>
@@ -334,7 +334,7 @@
     </main>
 
     <footer class="footer">
-      <p data-i18n="disclaimer">Disclaimer: SkuROI provides estimates for planning only. Actual payouts, fees, tax treatment, refunds, adjustments, and promotions may differ in your platform account.</p>
+      <p data-i18n="disclaimer">Avertissement : SkuROI fournit uniquement des estimations de planification. Les paiements, frais, taxes, remboursements et ajustements réels peuvent varier.</p>
     </footer>
 
     <script src="/src/i18n.js" defer></script>

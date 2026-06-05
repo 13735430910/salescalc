@@ -1,7 +1,129 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://skuroi.com/</loc>
     <lastmod>2026-06-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://skuroi.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://skuroi.com/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://skuroi.com/zh-cn/" />
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://skuroi.com/zh-tw/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://skuroi.com/ja/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://skuroi.com/ko/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://skuroi.com/es/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://skuroi.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://skuroi.com/de/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://skuroi.com/it/" />
+  </url>
+  <url>
+    <loc>https://skuroi.com/zh-cn/</loc>
+    <lastmod>2026-06-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://skuroi.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://skuroi.com/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://skuroi.com/zh-cn/" />
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://skuroi.com/zh-tw/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://skuroi.com/ja/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://skuroi.com/ko/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://skuroi.com/es/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://skuroi.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://skuroi.com/de/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://skuroi.com/it/" />
+  </url>
+  <url>
+    <loc>https://skuroi.com/zh-tw/</loc>
+    <lastmod>2026-06-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://skuroi.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://skuroi.com/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://skuroi.com/zh-cn/" />
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://skuroi.com/zh-tw/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://skuroi.com/ja/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://skuroi.com/ko/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://skuroi.com/es/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://skuroi.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://skuroi.com/de/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://skuroi.com/it/" />
+  </url>
+  <url>
+    <loc>https://skuroi.com/ja/</loc>
+    <lastmod>2026-06-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://skuroi.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://skuroi.com/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://skuroi.com/zh-cn/" />
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://skuroi.com/zh-tw/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://skuroi.com/ja/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://skuroi.com/ko/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://skuroi.com/es/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://skuroi.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://skuroi.com/de/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://skuroi.com/it/" />
+  </url>
+  <url>
+    <loc>https://skuroi.com/ko/</loc>
+    <lastmod>2026-06-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://skuroi.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://skuroi.com/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://skuroi.com/zh-cn/" />
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://skuroi.com/zh-tw/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://skuroi.com/ja/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://skuroi.com/ko/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://skuroi.com/es/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://skuroi.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://skuroi.com/de/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://skuroi.com/it/" />
+  </url>
+  <url>
+    <loc>https://skuroi.com/es/</loc>
+    <lastmod>2026-06-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://skuroi.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://skuroi.com/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://skuroi.com/zh-cn/" />
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://skuroi.com/zh-tw/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://skuroi.com/ja/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://skuroi.com/ko/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://skuroi.com/es/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://skuroi.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://skuroi.com/de/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://skuroi.com/it/" />
+  </url>
+  <url>
+    <loc>https://skuroi.com/fr/</loc>
+    <lastmod>2026-06-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://skuroi.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://skuroi.com/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://skuroi.com/zh-cn/" />
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://skuroi.com/zh-tw/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://skuroi.com/ja/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://skuroi.com/ko/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://skuroi.com/es/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://skuroi.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://skuroi.com/de/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://skuroi.com/it/" />
+  </url>
+  <url>
+    <loc>https://skuroi.com/de/</loc>
+    <lastmod>2026-06-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://skuroi.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://skuroi.com/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://skuroi.com/zh-cn/" />
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://skuroi.com/zh-tw/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://skuroi.com/ja/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://skuroi.com/ko/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://skuroi.com/es/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://skuroi.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://skuroi.com/de/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://skuroi.com/it/" />
+  </url>
+  <url>
+    <loc>https://skuroi.com/it/</loc>
+    <lastmod>2026-06-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://skuroi.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://skuroi.com/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://skuroi.com/zh-cn/" />
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://skuroi.com/zh-tw/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://skuroi.com/ja/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://skuroi.com/ko/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://skuroi.com/es/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://skuroi.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://skuroi.com/de/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://skuroi.com/it/" />
   </url>
 </urlset>
